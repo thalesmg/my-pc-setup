@@ -6,10 +6,12 @@
     update_cache: "yes"
     cache_valid_time: "3600"
     state: "latest"
+  register: zsh_installed
 
 - name: "Set ZSH as the default shell"
   become: yes
   become_user: root
+  when: zsh_installed.changed
   command: "chsh -s /usr/bin/zsh {{ my_user }}"
 
 - name: "Checks that Oh My ZSH is installed"

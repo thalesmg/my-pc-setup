@@ -3,7 +3,7 @@
 - name: Download and install
   become: yes
   become_user: root
-  command: curl -sSL https://get.haskellstack.org/ | sh
+  shell: curl -sSL https://get.haskellstack.org/ | sh
 
 - name: Update Stack
   command: stack update

@@ -1,2 +1,11 @@
 [local]
 127.0.0.1
+
+[my-pcs]
+127.0.0.1
+
+[local:vars]
+connection=local
+
+[my-pcs:vars]
+connection=ssh
