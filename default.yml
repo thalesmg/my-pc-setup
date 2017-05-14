@@ -1,0 +1,14 @@
+---
+
+- name: "Config my PC"
+  hosts: 127.0.0.1
+  connection: local
+  remote_user: "{{ my_user }}"
+  become: yes
+  become_user: "{{ my_user }}"
+  vars:
+    my_user: "thales"
+  roles:
+    - packages
+    - zsh
+    - haskell

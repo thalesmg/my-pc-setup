@@ -1,0 +1,10 @@
+---
+
+- name: Check that Stack is installed
+  stat:
+    path: "/usr/local/bin/stack"
+  register: stack
+  changed_when: stack.stat.exists == False
+
+- include: installation.yml
+  when: stack.changed

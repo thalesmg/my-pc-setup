@@ -1,0 +1,32 @@
+---
+
+- name: "set up required repositories"
+  apt_repository:
+    repo: "{{ item }}"
+    state: "present"
+    update_cache: "yes"
+    mode: "644"
+  when: False
+  with_items:
+    - ppa:ansible/ansible
+    - ppa:graphics-drivers/ppa
+
+- name: "Install packages"
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ item }}"
+    update_cache: "yes"
+    cache_valid_time: "3600"
+    state: "latest"
+  with_items:
+    - ansible
+    - build-essential
+    - curl
+    - git
+    - inotify-tools
+    - silversearcher-ag
+    - ssh
+    - tree
+    - wget
+    - xclip
