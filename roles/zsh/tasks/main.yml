@@ -39,5 +39,5 @@
   become: yes
   become_user: "{{ my_user }}"
   template:
-    src: zsh/.zshrc.j2
+    src: .zshrc.j2
     dest: "{{ ansible_env.HOME }}/.zshrc"
