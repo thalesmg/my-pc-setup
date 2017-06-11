@@ -26,6 +26,8 @@
     - curl
     - git
     - inotify-tools
+    - nodejs
+    - npm
     - python3-pip
     - silversearcher-ag
     - ssh
@@ -35,3 +37,11 @@
     - vim
     - wget
     - xclip
+
+- name: Add an alias for Nodejs
+  become: yes
+  become_user: root
+  file:
+    src: /usr/bin/nodejs
+    dest: /usr/bin/node
+    state: link

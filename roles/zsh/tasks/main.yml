@@ -26,11 +26,12 @@
   become: yes
   become_user: "{{ my_user }}"
   when: ohmyzsh.changed
+  register: ohmyzsh_install
   command: |
     curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh -c
 
 - name: "Install Bullettrain theme for Oh My ZSH"
-  when: ohmyzsh.changed
+  when: ohmyzsh_install.changed
   become: yes
   become_user: "{{ my_user }}"
   get_url:
@@ -40,6 +41,7 @@
 - name: "Config .zshrc"
   become: yes
   become_user: "{{ my_user }}"
+  when: ohmyzsh_install.changed
   template:
     src: .zshrc.j2
     dest: "{{ ansible_env.HOME }}/.zshrc"

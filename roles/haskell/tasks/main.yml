@@ -11,3 +11,6 @@
 
 - include: installation.yml
   when: False and stack.changed
+
+- name: Upgrade Stack
+  shell: stack update && stack upgrade
