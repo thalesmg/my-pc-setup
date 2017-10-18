@@ -24,10 +24,15 @@
     - apt-file
     - build-essential
     - curl
+    - dnsutils
+    - figlet
     - git
     - inotify-tools
+    # - keynav
+    - mtr-tiny
     - nodejs
     - npm
+    - pass
     - python3-pip
     - silversearcher-ag
     - ssh
