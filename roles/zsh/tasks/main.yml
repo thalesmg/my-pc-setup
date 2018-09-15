@@ -44,11 +44,10 @@
     src: .zshrc.j2
     dest: "{{ ansible_env.HOME }}/.zshrc"
 
-- name: Configure .xprofile
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.xprofile"
-    regexp: "^xset r rate"
-    line: "xset r rate 240 42"
-    create: yes
+- name: configure .profile
+  template:
+    src: .profile
+    path: "{{ home }}/.profile"
+    mode: 0700
 
 ...
