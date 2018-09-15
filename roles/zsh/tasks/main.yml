@@ -1,28 +1,26 @@
 ---
 
-- name: "Installs ZSH"
-  apt:
-    name: "zsh"
-    update_cache: "yes"
-    cache_valid_time: "3600"
-    state: "latest"
+- name: installs zsh
+  package:
+    name: zsh
+    state: present
   register: zsh_installed
 
-- name: "Set ZSH as the default shell"
+- name: set zsh as the default shell
   become: yes
   become_user: root
   when: zsh_installed.changed
   command: "chsh -s /usr/bin/zsh {{ my_user }}"
 
-- name: "Checks that Oh My ZSH is installed"
+- name: checks that oh my zsh is installed
   become: yes
   become_user: "{{ my_user }}"
   stat:
     path: "{{ ansible_env.HOME }}/.oh-my-zsh"
   register: ohmyzsh
-  changed_when: ohmyzsh.stat.exists == False
+  changed_when: not ohmyzsh.stat.exists
 
-- name: "Install Oh My ZSH"
+- name: install oh my zsh
   become: yes
   become_user: "{{ my_user }}"
   when: ohmyzsh.changed
@@ -30,7 +28,7 @@
   command: |
     curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh -c
 
-- name: "Install Bullettrain theme for Oh My ZSH"
+- name: install bullettrain theme for oh my zsh
   when: ohmyzsh_install.changed
   become: yes
   become_user: "{{ my_user }}"
@@ -38,7 +36,7 @@
     src: "http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme"
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/"
 
-- name: "Config .zshrc"
+- name: config .zshrc
   become: yes
   become_user: "{{ my_user }}"
   when: ohmyzsh_install.changed
@@ -50,5 +48,7 @@
   lineinfile:
     path: "{{ ansible_env.HOME }}/.xprofile"
     regexp: "^xset r rate"
-    line: "xset r rate 220 42"
+    line: "xset r rate 240 42"
     create: yes
+
+...

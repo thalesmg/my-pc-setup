@@ -9,7 +9,10 @@
   vars:
     my_user: "thales"
   roles:
-    - packages
-    - zsh
-    - haskell
-    - docker
+    - role: packages
+    - role: zsh
+      tags: [zsh]
+    - role: asdf
+      tags: [asdf]
+    - role: haskell
+    - role: docker

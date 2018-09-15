@@ -1,14 +1,16 @@
 ---
 
-- name: Download and install
+- name: download and install
   become: yes
   become_user: root
   shell: curl -sSL https://get.haskellstack.org/ | sh
 
-- name: Update Stack
+- name: update stack
   command: stack update
 
-- name: Install GHCI Gloabally
+- name: install ghci gloabally
   become: yes
   become_user: root
   command: stack setup
+
+...

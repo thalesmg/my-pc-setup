@@ -1,0 +1,26 @@
+---
+
+- name: clone asdf repo
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: "{{ ansible_env.HOME }}/.asdf"
+    version: v0.5.1
+
+- name: add to .zshrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    line: "{{ item }}"
+    insertafter: EOF
+    state: present
+  loop:
+    - '. "$HOME/.asdf/asdf.sh"'
+    - '. "$HOME/.asdf/completions/asdf.bash"'
+
+- include_tasks: plugins.yml
+  loop:
+    - program: nodejs
+      version: 10.10.0
+  loop_control:
+    label: "{{ item.program }}: {{ item.version }}"
+
+...

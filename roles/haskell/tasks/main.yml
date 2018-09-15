@@ -1,16 +1,18 @@
 ---
 
-- name: Check that Stack is installed
+- name: check whether stack is installed
   stat:
     path: "{{ item }}"
-  with_items:
-    - "/usr/local/bin/stack"
-    - "/usr/bin/stack"
+  loop:
+    - /usr/local/bin/stack
+    - /usr/bin/stack
   register: stack
-  changed_when: (stack.stat.exists == False) and not stack
+  changed_when: not stack or not stack.stat.exists
 
 - include: installation.yml
-  when: False and stack.changed
+  when: stack.changed
 
-- name: Upgrade Stack
+- name: upgrade stack
   shell: stack update && stack upgrade
+
+...

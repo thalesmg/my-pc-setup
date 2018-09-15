@@ -1,52 +1,19 @@
 ---
 
-- name: Add Docker repository key
+- name: install docker and friends
   become: yes
   become_user: root
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: "present"
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - docker
+    - docker-compose
 
-- name: "Zesty PPA for Docker still isn't available"
-  become: yes
-  become_user: root
-  apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu zesty stable"
-    state: "absent"
-    update_cache: "yes"
-    mode: "0644"
-
-- name: Add Docker repository
-  become: yes
-  become_user: root
-  apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
-    state: "present"
-    update_cache: "yes"
-    mode: "0644"
-
-- name: Install Docker
-  become: yes
-  become_user: root
-  apt:
-    name: "docker-ce"
-    update_cache: "yes"
-    cache_valid_time: "3600"
-    state: "latest"
-
-- name: Add local user to docker group
+- name: add local user to docker group
   become: yes
   become_user: root
   user:
     name: "{{ my_user }}"
     append: yes
-    groups: sudo,docker
-
-- name: Install Docker-Compose
-  become: yes
-  become_user: root
-  get_url:
-    url: https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64
-    dest: /usr/local/bin/docker-compose
-    checksum: sha256:0d8af4d3336b0b41361c06ff213be5c42e2247beb746dbc597803e862af127e8
-    mode: 0775
+    groups: docker

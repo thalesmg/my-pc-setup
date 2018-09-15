@@ -1,52 +1,30 @@
 ---
 
-- name: "set up required repositories"
-  apt_repository:
-    repo: "{{ item }}"
-    state: "present"
-    update_cache: "yes"
-    mode: "644"
-  when: False
-  with_items:
-    - ppa:ansible/ansible
-    - ppa:graphics-drivers/ppa
-
-- name: "Install packages"
+- name: install packages
   become: yes
   become_user: root
-  apt:
+  package:
     name: "{{ item }}"
-    update_cache: "yes"
-    cache_valid_time: "3600"
-    state: "latest"
-  with_items:
+    state: present
+  loop:
     - ansible
-    - apt-file
-    - build-essential
+    - bind-tools
     - curl
-    - dnsutils
+    - emacs
     - figlet
     - git
     - inotify-tools
-    # - keynav
-    - mtr-tiny
-    - nodejs
+    - keynav
+    - mtr
+    - netcat-openbsd
     - npm
     - pass
-    - python3-pip
+    - python-pip
     - silversearcher-ag
+    - socat
     - ssh
     - terminator
-    - tmux
     - tree
     - vim
     - wget
     - xclip
-
-- name: Add an alias for Nodejs
-  become: yes
-  become_user: root
-  file:
-    src: /usr/bin/nodejs
-    dest: /usr/bin/node
-    state: link

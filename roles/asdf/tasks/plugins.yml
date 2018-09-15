@@ -1,0 +1,11 @@
+---
+
+  - name: install plugins
+    command: "{{ ansible_env.HOME }}/.asdf/bin/asdf plugin-add {{ item.program }}"
+    register: install_plugins
+    failed_when: install_plugins.rc != 0 and install_plugins.stderr is not match("Plugin named .* already added")
+
+  - name: install versions
+    command: "{{ ansible_env.HOME }}/.asdf/bin/asdf install {{ item.program }} {{ item.version }}"
+
+...
