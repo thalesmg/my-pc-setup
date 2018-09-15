@@ -13,6 +13,7 @@
     - emacs
     - figlet
     - git
+    - gnupg
     - inotify-tools
     - keynav
     - mtr

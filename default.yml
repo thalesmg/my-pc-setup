@@ -3,13 +3,19 @@
 - name: "Config my PC"
   hosts: my-pcs
   connection: local
+
+  vars:
+    my_user: "thales"
+    home: "{{ ansible_env.HOME }}"
+
   remote_user: "{{ my_user }}"
   become: yes
   become_user: "{{ my_user }}"
-  vars:
-    my_user: "thales"
+
   roles:
     - role: packages
+    - role: gnupg
+      tags: [gnupg]
     - role: zsh
       tags: [zsh]
     - role: asdf

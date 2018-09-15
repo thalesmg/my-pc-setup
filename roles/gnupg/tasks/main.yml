@@ -1,0 +1,18 @@
+---
+
+- name: .gnupg dir
+  file:
+    dest: "{{ home }}/.gnupg"
+    state: directory
+
+- name: gpg config files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ home }}/.gnupg/{{ item }}"
+  loop:
+    - gpg.conf
+    - gpg-agent.conf
+  notify:
+    - restart gpg-agent
+
+...
