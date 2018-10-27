@@ -12,6 +12,14 @@
   become: yes
   become_user: "{{ my_user }}"
 
+  tasks:
+    - name: setup user groups
+      user:
+        name: "{{ my_user }}"
+        groups: root,sys,log,power,adm,wheel,disk,lp,storage,uucp,users,dbus
+        append: yes
+      tags: [user_setup]
+
   roles:
     - role: packages
     - role: gnupg
