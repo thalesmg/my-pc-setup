@@ -1,0 +1,62 @@
+---
+
+# http://www.vikasing.com/2014/08/install-aura-on-archlinux-without.html
+
+- name: is aura installed?
+  stat:
+    path: /usr/bin/aura
+  register: aura_stat
+
+- name: install aura
+  block:
+    - name: prerequisite packages
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - ghc
+        - fakeroot
+
+    - name: download tar
+      get_url:
+        url: https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz
+        dest: /tmp/aura-bin.tar.gz
+
+    - name: create extraction dir
+      file:
+        dest: /tmp/aura-bin
+        state: directory
+
+    - name: extract tar
+      unarchive:
+        src: /tmp/aura-bin.tar.gz
+        dest: /tmp
+
+    - name: makepkg
+      command: makepkg
+      args:
+        chdir: /tmp/aura-bin
+        creates: /tmp/aura-bin/pkg
+
+    - name: package name
+      find:
+        paths: /tmp/aura-bin
+        patterns: "aura-bin-\\d+.\\d+.\\d+-\\d+-x86_64\\.pkg\\.tar\\.xz"
+        use_regex: yes
+      register: package
+
+    - debug:
+        var: carai
+
+    - name: install with pacman
+      command: "pacman -U {{ package.files[0].path }} --noconfirm"
+      become: yes
+      become_user: root
+      args:
+        chdir: /tmp/aura-bin
+        creates: /usr/bin/aura
+
+  when:
+    - aura_stat is not defined or not aura_stat.stat.exists
+
+...
