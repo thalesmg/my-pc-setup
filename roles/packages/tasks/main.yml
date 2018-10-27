@@ -19,13 +19,13 @@
     - inotify-tools
     - keynav
     - mtr
-    - netcat-openbsd
+    - openbsd-netcat
     - npm
     - pass
     - python-pip
     - ripgrep
     - rustup
-    - silversearcher-ag
+    - the_silver_searcher
     - socat
     - ssh
     - terminator
