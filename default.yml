@@ -21,6 +21,8 @@
       tags: [user_setup]
 
   roles:
+    - role: aura
+      tags: [aura_install]
     - role: packages
     - role: gnupg
       tags: [gnupg]
