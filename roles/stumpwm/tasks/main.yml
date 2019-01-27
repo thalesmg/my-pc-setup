@@ -1,0 +1,54 @@
+---
+
+- name: stumpwm dir
+  file:
+    dest: "{{ home }}/.stumpwm.d"
+    state: directory
+
+- name: stumpwm release
+  set_fact:
+    stumpwm_version: 8ea4ecca83b465288f65aeee1b57f1996966986e
+
+- name: stumpwm release file
+  set_fact:
+    stumpwm_file: "{{ stumpwm_version }}.tar.gz"
+
+- name: fetch stumpwm
+  get_url:
+    url: "https://github.com/stumpwm/stumpwm/archive/{{ stumpwm_file }}"
+    dest: "{{ home }}/.stumpwm.d/{{ stumpwm_file }}"
+
+- name: extract stumpwm
+  unarchive:
+    src: "{{ home }}/.stumpwm.d/{{ stumpwm_file }}"
+    dest: "{{ home }}/.stumpwm.d/"
+
+- name: install modules
+  git:
+    repo: https://github.com/stumpwm/stumpwm-contrib.git
+    dest: "{{ home }}/.stumpwm.d/modules"
+
+- name: build stumpwm
+  shell: "autoconf && ./configure && make"
+  args:
+    chdir: "{{ home }}/.stumpwm.d/stumpwm-{{ stumpwm_version }}"
+
+- name: stumpwm config
+  template:
+    src: init.lisp
+    dest: "{{ home }}/.stumpwm.d/init.lisp"
+
+- name: commit version
+  file:
+    src: "{{ home }}/.stumpwm.d/stumpwm-{{ stumpwm_version }}"
+    dest: "{{ home }}/.stumpwm.d/current"
+    state: link
+
+- name: stumpwm desktop entry for login manager
+  become: yes
+  become_user: root
+  template:
+    src: stumpwm.desktop
+    dest: /usr/share/xsessions/stumpwm.desktop
+
+...

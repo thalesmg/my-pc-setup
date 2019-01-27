@@ -1,0 +1,46 @@
+---
+
+- name: install sbcl
+  become: yes
+  become_user: root
+  package:
+    name: sbcl
+    state: present
+
+- name: fetch quicklisp
+  get_url:
+    url: https://beta.quicklisp.org/quicklisp.lisp
+    dest: /var/tmp/quicklisp.lisp
+    checksum: "sha256:4a7a5c2aebe0716417047854267397e24a44d0cce096127411e9ce9ccfeb2c17"
+
+- name: install quicklisp
+  command:
+  args:
+    creates: "{{ home }}/quicklisp/setup.lisp"
+    argv:
+      - sbcl
+      - --non-interactive
+      - --load
+      - /var/tmp/quicklisp.lisp
+      - --eval
+      - (quicklisp-quickstart:install)
+
+- name: sbclrc
+  template:
+    src: sbclrc
+    dest: "{{ home }}/.sbclrc"
+
+- name: sbcl modules
+  command:
+  args:
+    argv:
+      - sbcl
+      - --non-interactive
+      - --eval
+      - "(ql:quickload \"{{ item }}\")"
+  loop:
+    - clx
+    - cl-ppcre
+    - alexandria
+
+...

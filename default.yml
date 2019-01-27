@@ -30,5 +30,9 @@
       tags: [zsh]
     - role: asdf
       tags: [asdf]
+    - role: devel
+      tags: [devel]
     - role: haskell
     - role: docker
+    - role: stumpwm
+      tags: [stumpwm]
