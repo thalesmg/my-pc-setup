@@ -11,6 +11,7 @@
     - ansible
     - bind-tools
     - curl
+    - dmenu
     - emacs
     - expect
     - figlet
@@ -20,16 +21,17 @@
     - inotify-tools
     - keynav
     - mtr
-    - openbsd-netcat
     - npm
+    - openbsd-netcat
     - pass
     - python-pip
     - ripgrep
+    - rofi
     - rustup
-    - the_silver_searcher
     - socat
     - ssh
     - terminator
+    - the_silver_searcher
     - tree
     - vim
     - wget
