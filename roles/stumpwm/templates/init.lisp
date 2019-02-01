@@ -6,6 +6,7 @@
 
 (load-module :cpu)
 (load-module :mem)
+(load-module :net)
 (load-module :ttf-fonts)
 (load-module :battery-portable)
 
@@ -22,7 +23,7 @@
 (setf *mode-line-border-width* 0)
 
 (setf *screen-mode-line-format*
-      (list "%g %W ^> %C | %M | %B | " '(:eval (run-shell-command "date +'%a %Y-%m-%d %H:%M:%S'" t))))
+      (list "^B %g %W ^> ^B %l | %C | %M | %B | " '(:eval (run-shell-command "date +'%a %Y-%m-%d %H:%M:%S'" t))))
 (enable-mode-line (current-screen) (current-head) t)
 
 ;; commands
