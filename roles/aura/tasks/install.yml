@@ -45,9 +45,6 @@
         use_regex: yes
       register: package
 
-    - debug:
-        var: carai
-
     - name: install with pacman
       command: "pacman -U {{ package.files[0].path }} --noconfirm"
       become: yes
