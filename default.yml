@@ -36,3 +36,5 @@
     - role: docker
     - role: stumpwm
       tags: [stumpwm]
+    - role: cl-scripts
+      tags: [cl-scripts]

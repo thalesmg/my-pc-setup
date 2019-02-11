@@ -1,0 +1,8 @@
+---
+
+- name: deploy cl scripts
+  make:
+    chdir: "{{ home }}/common-lisp/"
+    target: install
+
+...

@@ -1,0 +1,20 @@
+---
+
+- name: copy asd system
+  copy:
+    src: meus-papiros.asd
+    dest: "{{ home }}/common-lisp/meus-papiros.asd"
+    mode: 0744
+
+- name: copy papiros
+  template:
+    src: "{{ item }}"
+    dest: "{{ home }}/common-lisp/{{ item }}"
+    mode: 0744
+  loop:
+    - main.lisp
+    - Makefile
+  notify:
+    - deploy cl scripts
+
+...
