@@ -1,16 +1,27 @@
 ---
 
+- name: install cl-launch
+  include_tasks: aura.yml
+  vars:
+    package: cl-launch
+
+- name: create script folder
+  file:
+    dest: "{{ home }}/common-lisp/"
+    state: directory
+    mode: 0700
+
 - name: copy asd system
   copy:
     src: meus-papiros.asd
     dest: "{{ home }}/common-lisp/meus-papiros.asd"
-    mode: 0744
+    mode: 0700
 
 - name: copy papiros
   template:
     src: "{{ item }}"
     dest: "{{ home }}/common-lisp/{{ item }}"
-    mode: 0744
+    mode: 0700
   loop:
     - main.lisp
     - Makefile
