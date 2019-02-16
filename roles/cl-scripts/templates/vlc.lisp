@@ -22,8 +22,8 @@
 
 (defun call-vlc (command)
   (let* ((auth (get-pass))
-        (curl-comm (format nil "curl -H 'content-type: text/xml' -XGET -u':~A' '~A:~A/requests/status.xml?command=~A'" auth *vlc-host* *vlc-port* command)))
-    (run/nil `(echo ,curl-comm))))
+         (curl-comm (format nil "curl -H 'content-type: text/xml' -XGET -u':~A' '~A:~A/requests/status.xml?command=~A'" auth *vlc-host* *vlc-port* command)))
+    (run/nil curl-comm)))
 
 (exporting-definitions
   (defun tmg-vlc (&optional command)
@@ -33,7 +33,6 @@
       ((equal command "pause-resume") (call-vlc "pl_pause"))
       ('t (progn
             (run `(echo "comandos possíveis: next, previous, pause-resume"))
-            (failure))))
-    (success)))
+            (failure))))))
 
 (register-commands :meus-papiros/vlc)
