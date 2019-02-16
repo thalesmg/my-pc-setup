@@ -11,20 +11,32 @@
     state: directory
     mode: 0700
 
+- name: papiros
+  set_fact:
+    papiros:
+      - main
+      - vlc
+
 - name: copy asd system
-  copy:
+  template:
     src: meus-papiros.asd
     dest: "{{ home }}/common-lisp/meus-papiros.asd"
+    mode: 0700
+  notify:
+    - deploy cl scripts
+
+- name: copy Makefile
+  template:
+    src: Makefile
+    dest: "{{ home }}/common-lisp/Makefile"
     mode: 0700
 
 - name: copy papiros
   template:
-    src: "{{ item }}"
-    dest: "{{ home }}/common-lisp/{{ item }}"
+    src: "{{ item }}.lisp"
+    dest: "{{ home }}/common-lisp/{{ item }}.lisp"
     mode: 0700
-  loop:
-    - main.lisp
-    - Makefile
+  loop: "{{ papiros }}"
   notify:
     - deploy cl scripts
 
