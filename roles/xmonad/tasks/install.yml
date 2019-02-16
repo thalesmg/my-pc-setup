@@ -1,0 +1,13 @@
+---
+
+- name: install xmonad
+  become: true
+  become_user: root
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - xmonad
+    - xmobar
+
+...

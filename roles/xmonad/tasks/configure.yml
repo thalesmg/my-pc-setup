@@ -1,0 +1,23 @@
+---
+
+- name: xmonad folder
+  file:
+    dest: "{{ home }}/.xmonad"
+    state: directory
+    mode: 0744
+
+- name: config files
+  template:
+    src: "{{ item.file }}"
+    dest: "{{ home }}/{{ item.path }}"
+    mode: 0744
+  notify: recompile xmonad
+  loop:
+    - file: xmonad.hs
+      path: .xmonad/xmonad.hs
+    - file: xmobarrc
+      path: .xmobarrc
+  loop_control:
+    label: "{{ item.path }}"
+
+...

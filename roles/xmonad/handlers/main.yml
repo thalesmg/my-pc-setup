@@ -1,0 +1,6 @@
+---
+
+- name: recompile xmonad
+  command: xmonad --recompile
+
+...

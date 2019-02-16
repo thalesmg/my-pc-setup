@@ -36,5 +36,7 @@
     - role: docker
     - role: stumpwm
       tags: [stumpwm]
+    - role: xmonad
+      tags: [xmonad]
     - role: cl-scripts
       tags: [cl-scripts]
