@@ -2,9 +2,10 @@
 
 - name: "aura: install package {{ package }}"
   become: true
+  become_user: root
   command: "aura -Ax --needed --noconfirm {{ package }}"
   register: aura_output
-  failed_when: "'ERROR:' in aura_output.stdout"
+  failed_when: "'ERROR:' in aura_output.stdout or 'You cannot perform this operation unless you are root.' in aura_output.stdout"
   changed_when: "'The following packages are already installed' not in aura_output.stdout"
 
 ...

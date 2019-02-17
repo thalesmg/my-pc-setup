@@ -29,7 +29,7 @@
     dest: "{{ home }}/.stumpwm.d/modules"
 
 - name: build stumpwm
-  shell: "autoconf && ./configure && make"
+  shell: "autoconf && ./configure && make clean && make"
   args:
     chdir: "{{ home }}/.stumpwm.d/stumpwm-{{ stumpwm_version }}"
 
