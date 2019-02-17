@@ -16,7 +16,7 @@
     - name: setup user groups
       user:
         name: "{{ my_user }}"
-        groups: root,sys,log,power,adm,wheel,disk,lp,storage,uucp,users,dbus
+        groups: root,sys,log,power,adm,wheel,disk,lp,storage,uucp,users,dbus,input
         append: yes
       tags: [user_setup]
 

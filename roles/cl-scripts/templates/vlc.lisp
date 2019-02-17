@@ -15,7 +15,7 @@
   "localhost")
 
 (defvar *vlc-port*
-  "8080")
+  "4212")
 
 (defun get-pass ()
   (string-trim '(#\Newline) (run/s `(pass local/vlc/password))))

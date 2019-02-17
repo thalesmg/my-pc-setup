@@ -1,0 +1,34 @@
+---
+
+- name: vlc
+  assert:
+    that: vlc_password is defined
+    fail_msg: Defina a senha com `-e vlc_password=$(pass local/vlc/password)`
+
+- name: vlc variables
+  set_fact:
+    vlc_port: 4212
+
+- block:
+    - name: vlc set port
+      lineinfile:
+        path: "{{ home }}/.config/vlc/vlcrc"
+        regex: "^#?telnet-port="
+        line: "telnet-port={{ vlc_port }}"
+        state: present
+
+    - name: vlc set password
+      lineinfile:
+        path: "{{ home }}/.config/vlc/vlcrc"
+        regex: "^#?telnet-password="
+        line: "telnet-password={{ vlc_password }}"
+        state: present
+
+    - name: vlc enable web interface
+      lineinfile:
+        path: "{{ home }}/.config/vlc/vlcrc"
+        regex: "^#?extraintf="
+        line: "extraintf=http"
+        state: present
+
+...

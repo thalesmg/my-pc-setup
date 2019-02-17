@@ -34,8 +34,12 @@
     - the_silver_searcher
     - tree
     - vim
+    - vlc
     - wget
     - whois
     - xclip
+
+- import_tasks: vlc.yml
+  tags: [vlc]
 
 ...
