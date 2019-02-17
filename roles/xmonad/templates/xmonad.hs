@@ -6,6 +6,7 @@ import XMonad
 import XMonad.Actions.SpawnOn (spawnOn, manageSpawn)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Layout
@@ -62,6 +63,9 @@ myMiscKeys conf@XConfig{modMask = modm} = M.fromList $
   , ((0, xF86XK_AudioPrev), spawn "{{ home }}/bin/tmg-vlc.sh previous")
   , ((modm .|. controlMask, xK_KP_Delete), spawn "{{ home }}/bin/tmg-vlc.sh pause-resume")
   , ((0, xF86XK_AudioPlay), spawn "{{ home }}/bin/tmg-vlc.sh pause-resume")
+  , ((noModMask, stringToKeysym "XF86AudioRaiseVolume"), spawn "amixer set Master 2+")
+  , ((noModMask, stringToKeysym "XF86AudioLowerVolume"), spawn "amixer set Master 2-")
+  , ((noModMask, stringToKeysym "XF86AudioMute"), spawn "amixer set Master toggle")
   ]
 
 myKeys conf = foldMap ($ conf) [myMiscKeys, extraWorkspaceKeys, keys def]
@@ -105,4 +109,4 @@ myConfig xmobarProc = def
 
 main = do
   xmproc <- spawnPipe "xmobar"
-  xmonad $ myConfig xmproc
+  xmonad $ ewmh $ docks $ myConfig xmproc
