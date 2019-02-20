@@ -9,4 +9,5 @@
   :depends-on ((:version "cl-scripting" "0.1")
                (:version "inferior-shell" "2.0.3.3")
                (:version "fare-utils" "1.0.0.5")
+               (:version "uuid" "2012.12.26")
 {{ papiros | map('regex_replace', '^(.+)$', '"meus-papiros/\\1"') | join('\n') | indent(width=15, indentfirst=True) }}))

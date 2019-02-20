@@ -16,6 +16,7 @@
     papiros:
       - main
       - vlc
+      - misc
 
 - name: copy asd system
   template:
