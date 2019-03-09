@@ -42,5 +42,6 @@
     - clx
     - cl-ppcre
     - alexandria
+    - quicklisp-slime-helper
 
 ...
