@@ -29,7 +29,7 @@
     - rofi
     - rustup
     - socat
-    - ssh
+    - openssh
     - terminator
     - the_silver_searcher
     - tree
@@ -38,6 +38,9 @@
     - wget
     - whois
     - xclip
+    - xorg
+    - xorg-drivers
+    - xscreensaver
 
 - import_tasks: vlc.yml
   tags: [vlc]

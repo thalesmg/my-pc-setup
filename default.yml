@@ -24,6 +24,7 @@
     - role: aura
       tags: [aura_install]
     - role: packages
+      tags: [packages]
     - role: gnupg
       tags: [gnupg]
     - role: zsh
@@ -33,7 +34,9 @@
     - role: devel
       tags: [devel]
     - role: haskell
+      tags: [haskell]
     - role: docker
+      tags: [docker]
     - role: stumpwm
       tags: [stumpwm]
     - role: xmonad

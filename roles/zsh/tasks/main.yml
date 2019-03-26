@@ -20,34 +20,39 @@
   register: ohmyzsh
   changed_when: not ohmyzsh.stat.exists
 
-- name: install oh my zsh
-  become: yes
-  become_user: "{{ my_user }}"
-  when: ohmyzsh.changed
-  register: ohmyzsh_install
-  command: |
-    curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh -c
+- block:
+    - name: install oh my zsh
+      become: yes
+      become_user: "{{ my_user }}"
+      register: ohmyzsh_install
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-- name: install bullettrain theme for oh my zsh
-  when: ohmyzsh_install.changed
-  become: yes
-  become_user: "{{ my_user }}"
-  get_url:
-    src: "http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme"
-    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/"
+    - name: install bullettrain theme for oh my zsh
+      become: yes
+      become_user: "{{ my_user }}"
+      when: ohmyzsh_install is changed or zsh_install | default(False)
+      get_url:
+        url: "http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme"
+        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/bullet-train.zsh-theme"
 
-- name: config .zshrc
-  become: yes
-  become_user: "{{ my_user }}"
-  when: ohmyzsh_install.changed
-  template:
-    src: .zshrc.j2
-    dest: "{{ ansible_env.HOME }}/.zshrc"
+    - name: config .zshrc
+      become: yes
+      become_user: "{{ my_user }}"
+      when: ohmyzsh_install is changed or zsh_install | default(False)
+      template:
+        src: .zshrc.j2
+        dest: "{{ ansible_env.HOME }}/.zshrc"
 
-- name: configure .profile
+- name: copy .profile
   template:
     src: .profile
-    path: "{{ home }}/.profile"
+    dest: "{{ home }}/.profile"
+    mode: 0700
+
+- name: copy .profile
+  template:
+    src: xmodmap
+    dest: "{{ home }}/.xmodmap"
     mode: 0700
 
 - name: bullet-train exit code
@@ -55,13 +60,13 @@
     regexp: '^( *)BULLETTRAIN_STATUS_EXIT_SHOW=false$'
     line: '\1BULLETTRAIN_STATUS_EXIT_SHOW=true'
     backrefs: true
-    path: "{{ lookup('env', 'ZSH_CUSTOM')/themes/bullet-train.zsh-theme }}"
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/bullet-train.zsh-theme"
 
 - name: bullet-train prompt char
   lineinfile:
     regexp: '^( *)BULLETTRAIN_PROMPT_CHAR'
     line: '\1BULLETTRAIN_PROMPT_CHAR="ͳ "'
     backrefs: true
-    path: "{{ lookup('env', 'ZSH_CUSTOM')/themes/bullet-train.zsh-theme }}"
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/bullet-train.zsh-theme"
 
 ...
