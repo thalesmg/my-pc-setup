@@ -10,6 +10,11 @@
     vlc_port: 4212
 
 - block:
+    - name: install vlc
+      package:
+        name: vlc
+        state: present
+
     - name: vlc set port
       lineinfile:
         path: "{{ home }}/.config/vlc/vlcrc"
