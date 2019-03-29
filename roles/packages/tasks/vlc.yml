@@ -33,7 +33,7 @@
       lineinfile:
         path: "{{ home }}/.config/vlc/vlcrc"
         regex: "^#?extraintf="
-        line: "extraintf=http"
+        line: "extraintf=telnet"
         state: present
 
 ...
