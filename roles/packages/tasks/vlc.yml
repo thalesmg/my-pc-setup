@@ -18,8 +18,8 @@
     - name: vlc set port
       lineinfile:
         path: "{{ home }}/.config/vlc/vlcrc"
-        regex: "^#?telnet-port="
-        line: "telnet-port={{ vlc_port }}"
+        regex: "^#?http-port="
+        line: "http-port={{ vlc_port }}"
         state: present
 
     - name: vlc set password
@@ -33,7 +33,7 @@
       lineinfile:
         path: "{{ home }}/.config/vlc/vlcrc"
         regex: "^#?extraintf="
-        line: "extraintf=telnet"
+        line: "extraintf=http"
         state: present
 
 ...
