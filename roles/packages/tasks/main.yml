@@ -45,4 +45,7 @@
 - import_tasks: vlc.yml
   tags: [vlc]
 
+- import_tasks: acpid.yml
+  tags: [acpid]
+
 ...

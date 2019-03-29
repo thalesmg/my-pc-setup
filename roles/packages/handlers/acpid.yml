@@ -1,0 +1,10 @@
+---
+
+- name: acpid restart
+  become: yes
+  become_user: root
+  service:
+    name: acpid
+    state: restarted
+
+...

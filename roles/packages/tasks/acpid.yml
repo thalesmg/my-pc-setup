@@ -1,0 +1,36 @@
+---
+
+- name: install acpid
+  package:
+    name: acpid
+    state: present
+
+- name: find card number
+  command: awk '/^ ?[0-9]/ && /Intel PCH/ { print $1 }' /proc/asound/cards
+  register: card_number
+  failed_when: not card_number.stdout_lines
+  changed_when: False
+
+- name: set card number
+  set_fact:
+    acpid_sound_card_number: card_number.stdout
+
+- name: copy handler.sh
+  become: yes
+  become_user: root
+  template:
+    src: handler.sh
+    dest: /etc/acpi/handler.sh
+    mode: 0755
+    owner: root
+  notify: acpid restart
+
+- name: start/enable acpid
+  become: yes
+  become_user: root
+  service:
+    name: acpid
+    enabled: true
+    state: started
+
+...
