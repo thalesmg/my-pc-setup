@@ -15,4 +15,11 @@
 - name: upgrade stack
   shell: stack update && stack upgrade
 
+- name: .ghci
+  copy:
+    src: ghci
+    dest: "{{ home }}/.ghci"
+    mode: 0755
+    owner: "{{ my_user }}"
+
 ...
