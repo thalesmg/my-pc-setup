@@ -55,18 +55,4 @@
     dest: "{{ home }}/.xmodmap"
     mode: 0700
 
-- name: bullet-train exit code
-  lineinfile:
-    regexp: '^( *)BULLETTRAIN_STATUS_EXIT_SHOW=false$'
-    line: '\1BULLETTRAIN_STATUS_EXIT_SHOW=true'
-    backrefs: true
-    path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/bullet-train.zsh-theme"
-
-- name: bullet-train prompt char
-  lineinfile:
-    regexp: '^( *)BULLETTRAIN_PROMPT_CHAR'
-    line: '\1BULLETTRAIN_PROMPT_CHAR="ͳ "'
-    backrefs: true
-    path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/bullet-train.zsh-theme"
-
 ...
