@@ -10,5 +10,7 @@
     - xmonad
     - xmonad-contrib
     - xmobar
+    # para tabbed simple
+    - xorg-fonts-misc
 
 ...
