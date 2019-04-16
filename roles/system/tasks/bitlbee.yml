@@ -1,0 +1,40 @@
+---
+
+- name: install bitlbee and libpurple
+  include_tasks: aura.yml
+  vars:
+    package: "{{ item }}"
+  loop:
+    - bitlbee-libpurple
+    - telegram-purple-git
+
+- name: configure bitlbee
+  become: yes
+  become_user: root
+  block:
+    - name: configure bitlbee user
+      lineinfile:
+        path: /etc/bitlbee/bitlbee.conf
+        regex: '^(# )?User = '
+        line: 'User = bitlbee'
+
+    - name: configure bitlbee daemon interface
+      lineinfile:
+        path: /etc/bitlbee/bitlbee.conf
+        regex: '^(# )?DaemonInterface = '
+        line: 'DaemonInterface = 127.0.0.1'
+
+    - name: configure bitlbee daemon port
+      lineinfile:
+        path: /etc/bitlbee/bitlbee.conf
+        regex: '^(# )?DaemonPort = '
+        line: 'DaemonPort = 6667'
+
+    - name: give permissions to bitlbee user
+      file:
+        dest: /var/lib/bitlbee
+        owner: bitlbee
+        group: bitlbee
+        recurse: true
+
+...

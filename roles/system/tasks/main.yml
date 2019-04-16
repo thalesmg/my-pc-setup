@@ -1,0 +1,6 @@
+---
+
+- import_tasks: bitlbee.yml
+  tags: [bitlbee]
+
+...

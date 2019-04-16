@@ -29,6 +29,8 @@
       tags: [gnupg]
     - role: zsh
       tags: [zsh]
+    - role: system
+      tags: [system]
     - role: asdf
       tags: [asdf]
     - role: devel
