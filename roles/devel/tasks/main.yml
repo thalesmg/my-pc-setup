@@ -3,4 +3,7 @@
 - import_tasks: sbcl.yml
   tags: [sbcl]
 
+- import_tasks: agda.yml
+  tags: [agda]
+
 ...

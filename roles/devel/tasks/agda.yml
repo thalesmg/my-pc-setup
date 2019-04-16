@@ -1,0 +1,38 @@
+---
+
+- name: install agda
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - agda
+    - agda-stdlib
+
+- name: agda dir
+  file:
+    dest: "{{ home }}/.agda"
+    state: directory
+
+- name: agda libraries
+  copy:
+    dest: "{{ home }}/.agda/libraries"
+    content: "{{ home }}/.agda/standard-library.agda-lib"
+    mode: 0755
+
+- name: agda defaults
+  copy:
+    dest: "{{ home }}/.agda/defaults"
+    content: "standard-library"
+
+- name: copy stdlib
+  command: "cp -ra /usr/share/agda/lib/stdlib {{ home }}/.agda/stdlib"
+
+- name: copy standard-library.agda-lib
+  command: "cp -ra /usr/share/agda/lib/stdlib {{ home }}/.agda/standard-library.agda-stdlib"
+
+- name: agda mode setup
+  debug:
+    msg: |
+      Rode `agda-mode setup` para fazer a configuracao do emacs
+
+...
