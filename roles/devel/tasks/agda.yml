@@ -28,7 +28,7 @@
   command: "cp -ra /usr/share/agda/lib/stdlib {{ home }}/.agda/stdlib"
 
 - name: copy standard-library.agda-lib
-  command: "cp -ra /usr/share/agda/lib/standard-library.agda-lib {{ home }}/.agda/standard-library.agda-stdlib"
+  command: "cp -ra /usr/share/agda/lib/standard-library.agda-lib {{ home }}/.agda/standard-library.agda-lib"
 
 - name: agda mode setup
   debug:
