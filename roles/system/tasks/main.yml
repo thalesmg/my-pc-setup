@@ -3,4 +3,9 @@
 - import_tasks: bitlbee.yml
   tags: [bitlbee]
 
+- import_tasks: swap.yml
+  become: true
+  become_user: root
+  tags: [swap]
+
 ...

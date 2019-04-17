@@ -1,0 +1,39 @@
+---
+
+- name: swap install packages
+  package:
+    name: systemd-swap
+
+- name: create swap file
+  command: "fallocate -l {{ ansible_memtotal_mb * 2 }}M /var/local/swapf0"
+  args:
+    creates: /var/local/swapf0
+
+- name: checks swap file
+  command: swaplabel /var/local/swapf0
+  failed_when: "swaplabel.rc not in [0, 1]"
+  changed_when: false
+  register: swaplabel
+
+- name: creates swap area
+  command: mkswap /var/local/swapf0
+  when: swaplabel.rc != 0
+
+- name: configures fstab
+  lineinfile:
+    path: /etc/fstab
+    line: "/var/local/swapf0 none swap defaults 0 0"
+    insertafter: EOF
+
+- name: configure zram
+  copy:
+    src: zram.conf
+    dest: /etc/systemd/swap.conf.d/zram.conf
+
+- name: enable/start systemd-swap
+  systemd:
+    name: systemd-swap
+    state: started
+    enabled: true
+
+...
