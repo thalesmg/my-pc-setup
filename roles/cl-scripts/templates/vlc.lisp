@@ -5,7 +5,8 @@
           #:inferior-shell
           #:fare-utils
           #:cl-launch/dispatch)
-  (:export #:tmg-vlc))
+  (:export #:tmg-vlc
+           #:tmg-chvol))
 
 ;; (asdf:load-system :meus-papiros)
 
@@ -25,6 +26,13 @@
          (curl-comm (format nil "curl -H 'content-type: text/xml' -XGET -u':~A' '~A:~A/requests/status.xml?command=~A'" auth *vlc-host* *vlc-port* command)))
     (run/nil curl-comm)))
 
+(defun change-volume (sign)
+  (if (or (string= sign "+") (string= sign "-"))
+      (let ((step (format nil "5%~a" sign)))
+        (run `(amixer sset "Master" ,step))
+        (success))
+      (failure)))
+
 (exporting-definitions
   (defun tmg-vlc (&optional command)
     (cond
@@ -33,6 +41,9 @@
       ((equal command "pause-resume") (call-vlc "pl_pause"))
       ('t (progn
             (run `(echo "comandos possíveis: next, previous, pause-resume"))
-            (failure))))))
+            (failure)))))
+
+  (defun tmg-chvol (sign)
+    (change-volume sign)))
 
 (register-commands :meus-papiros/vlc)
