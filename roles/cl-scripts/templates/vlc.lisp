@@ -39,8 +39,10 @@
       ((equal command "next") (call-vlc "pl_next"))
       ((equal command "previous") (call-vlc "pl_previous"))
       ((equal command "pause-resume") (call-vlc "pl_pause"))
+      ((equal command "fwd") (call-vlc "seek&val=+10"))
+      ((equal command "bwd") (call-vlc "seek&val=-10"))
       ('t (progn
-            (run `(echo "comandos possíveis: next, previous, pause-resume"))
+            (run `(echo "comandos possíveis: next, previous, pause-resume, fwd, bwd"))
             (failure)))))
 
   (defun tmg-chvol (sign)

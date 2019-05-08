@@ -63,6 +63,8 @@ myMiscKeys conf@XConfig{modMask = modm} = M.fromList $
   , ((0, xF86XK_AudioPrev), spawn "{{ home }}/bin/tmg-vlc previous")
   , ((modm .|. controlMask, xK_KP_Delete), spawn "{{ home }}/bin/tmg-vlc pause-resume")
   , ((0, xF86XK_AudioPlay), spawn "{{ home }}/bin/tmg-vlc pause-resume")
+  , ((controlMask, xF86XK_AudioNext), spawn "{{ home }}/bin/tmg-vlc fwd")
+  , ((controlMask, xF86XK_AudioPrev), spawn "{{ home }}/bin/tmg-vlc bwd")
   , ((noModMask, stringToKeysym "XF86AudioRaiseVolume"), spawn "amixer set Master 2%+")
   , ((noModMask, stringToKeysym "XF86AudioLowerVolume"), spawn "amixer set Master 2%-")
   , ((noModMask, stringToKeysym "XF86AudioMute"), spawn "amixer set Master toggle")
