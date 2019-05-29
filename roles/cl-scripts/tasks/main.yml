@@ -17,6 +17,7 @@
       - main
       - vlc
       - misc
+      - dbus
 
 - name: copy asd system
   template:
