@@ -1,6 +1,7 @@
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-setxkbmap -model abnt2 -layout br -variant abnt2
+export GTK_THEME=Adwaita:dark
+setxkbmap us -variant intl
 xmodmap "$HOME/.xmodmap"
 xscreensaver &
 xset r rate 240 42
