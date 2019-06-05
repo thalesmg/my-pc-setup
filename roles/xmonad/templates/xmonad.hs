@@ -50,6 +50,7 @@ extraWorkspaceKeys conf@XConfig{modMask = modm} = M.fromList $
 
 myMiscKeys conf@XConfig{modMask = modm} = M.fromList $
   [ ((modm, xK_p), spawn "dmenu_run")
+  , ((modm, xK_P), spawn "passmenu")
   , ((modm, xK_b), sendMessage ToggleStruts)
   , ((altMask .|. controlMask, xK_l), spawn "xscreensaver-command --lock")
   , ((shiftMask .|. modm, xK_Print), spawn "peek")
