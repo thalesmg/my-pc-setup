@@ -1,0 +1,30 @@
+---
+
+- name: install xscreensaver
+  become: yes
+  become_user: root
+  package:
+    name: xscreensaver
+    state: present
+
+- name: user systemd folder
+  file:
+    dest: "{{ home }}/.config/systemd/user/"
+    state: directory
+    mode: 0700
+
+- name: copy xscreensaver.service unit
+  copy:
+    src: xscreensaver.service
+    dest: "{{ home }}/.config/systemd/user/xscreensaver.service"
+    mode: 0700
+    owner: "{{ my_user }}"
+
+- name: xscreensaver systemd service
+  systemd:
+    name: xscreensaver.service
+    scope: user
+    state: started
+    enabled: "{{ xscreensaver_enabled | default(False) }}"
+
+...

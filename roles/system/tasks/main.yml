@@ -8,4 +8,7 @@
   become_user: root
   tags: [swap]
 
+- import_tasks: xscreensaver.yml
+  tags: [xscreensaver]
+
 ...
