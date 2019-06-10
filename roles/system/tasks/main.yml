@@ -3,6 +3,9 @@
 - import_tasks: bitlbee.yml
   tags: [bitlbee]
 
+- import_tasks: ntp.yml
+  tags: [ntpd]
+
 - import_tasks: swap.yml
   become: true
   become_user: root

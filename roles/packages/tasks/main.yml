@@ -22,7 +22,6 @@
     - keynav
     - mtr
     - npm
-    - ntp
     - openbsd-netcat
     - pass
     - python-pip

@@ -1,0 +1,23 @@
+---
+
+- name: install ntpd
+  become: true
+  become_user: root
+  package:
+    name: ntp
+    state: present
+
+- name: ntp.conf
+  copy:
+    src: ntp.conf
+    dest: /etc/ntp.conf
+    mode: 0644
+    owner: root
+
+- name: start/enable ntpd
+  systemd:
+    name: ntpd
+    state: started
+    enabled: true
+
+...
