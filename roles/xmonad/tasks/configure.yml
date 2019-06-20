@@ -20,4 +20,22 @@
   loop_control:
     label: "{{ item.path }}"
 
+- name: hooks folder
+  become: yes
+  become_user: root
+  file:
+    dest: /etc/pacman.d/hooks
+    state: directory
+    owner: root
+    mode: 0755
+
+- name: pacman hook
+  become: yes
+  become_user: root
+  copy:
+    src: xmonad.hook
+    dest: /etc/pacman.d/hooks/xmonad.hook
+    owner: root
+    mode: 0755
+
 ...

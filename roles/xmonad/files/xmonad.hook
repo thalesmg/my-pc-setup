@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = xmonad
+Target = xmonad-contrib
+
+[Action]
+# Depends = coreutils
+When = PostTransaction
+Exec = /usr/bin/xmonad --recompile
