@@ -8,6 +8,8 @@
     state: present
 
 - name: ntp.conf
+  become: true
+  become_user: root
   copy:
     src: ntp.conf
     dest: /etc/ntp.conf
@@ -15,6 +17,8 @@
     owner: root
 
 - name: start/enable ntpd
+  become: true
+  become_user: root
   systemd:
     name: ntpd
     state: started
