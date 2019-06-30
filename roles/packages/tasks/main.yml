@@ -21,7 +21,6 @@
     - inotify-tools
     - keynav
     - mtr
-    - npm
     - openbsd-netcat
     - pass
     - python-pip
