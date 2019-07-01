@@ -41,6 +41,13 @@
     - xorg-drivers
     - xscreensaver
 
+- name: install aur packages
+  include_tasks: aura.yml
+  vars:
+    package: "{{ item }}"
+  loop:
+    - duc
+
 - import_tasks: vlc.yml
   tags: [vlc]
 
