@@ -32,7 +32,7 @@
 - name: pacman hook
   become: yes
   become_user: root
-  copy:
+  template:
     src: xmonad.hook
     dest: /etc/pacman.d/hooks/xmonad.hook
     owner: root

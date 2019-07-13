@@ -8,4 +8,4 @@ Target = xmonad-contrib
 [Action]
 # Depends = coreutils
 When = PostTransaction
-Exec = /usr/bin/xmonad --recompile
+Exec = su {{ my_user }} /usr/bin/xmonad --recompile
