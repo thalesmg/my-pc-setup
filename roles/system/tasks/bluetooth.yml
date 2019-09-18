@@ -1,0 +1,24 @@
+---
+
+- name: packages
+  become: yes
+  become_user: root
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - bluez
+    - bluez-libs
+    - bluez-utils
+    - bluez-tools
+
+- name: mouse config
+  become: yes
+  become_user: root
+  copy:
+    src: bt-mouse.conf
+    dest: /etc/X11/xorg.conf.d/80-bt-mouse.conf
+    mode: 0644
+    owner: root
+
+...

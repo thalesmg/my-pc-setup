@@ -14,4 +14,7 @@
 - import_tasks: xscreensaver.yml
   tags: [xscreensaver]
 
+- import_tasks: bluetooth.yml
+  tags: [bluetooth]
+
 ...
