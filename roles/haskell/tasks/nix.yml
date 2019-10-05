@@ -1,0 +1,20 @@
+---
+
+- name: ghc versions
+  assert:
+    that: nix_hie_ghc is defined
+    fail_msg: Defina as versões do GHC com `-e nix_hie_ghc="ghc865 ghc843"`
+
+- name: cachix use all hies
+  command: cachix use all-hies
+
+- name: install hie
+  command: nix-env -iA selection --arg selector 'p: { inherit (p) {{ nix_hie_ghc }}; }' -f 'https://github.com/infinisil/all-hies/tarball/master'
+
+- name: install cabal-install
+  command: nix-env -i cabal-install
+
+- name: cabal update
+  command: cabal update
+
+...

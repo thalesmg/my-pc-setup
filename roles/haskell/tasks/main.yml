@@ -22,4 +22,7 @@
     mode: 0755
     owner: "{{ my_user }}"
 
+- import_tasks: nix.yml
+  tags: [nix]
+
 ...
