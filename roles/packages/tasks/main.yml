@@ -22,13 +22,13 @@
     - keynav
     - mtr
     - openbsd-netcat
+    - openssh
     - pass
     - python-pip
     - ripgrep
     - rofi
     - rustup
     - socat
-    - openssh
     - terminator
     - the_silver_searcher
     - tree

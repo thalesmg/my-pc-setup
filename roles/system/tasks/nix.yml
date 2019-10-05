@@ -1,0 +1,38 @@
+---
+
+- name: download nix installer
+  get_url:
+    url: https://nixos.org/nix/install
+    checksum: sha256:c6ee39d6262a93b3f171c8561a00a7012f4f1a2407db6e1bb54a7cfdd61dc4c4
+    dest: /tmp/nix-install.sh
+    mode: 0744
+
+- name: create /nix
+  become: yes
+  become_user: root
+  file:
+    dest: /nix
+    mode: 0755
+    owner: "{{ my_user }}"
+    group: root
+    state: directory
+
+- name: install nix
+  script: /tmp/nix-install.sh
+  args:
+    creates: "/nix/var/nix/profiles/per-user/{{ my_user }}/"
+
+- name: load nix into .zshrc and .profie
+  lineinfile:
+    path: "{{ home }}/{{ item }}"
+    line: "[[ -f {{ home }}/.nix-profile/etc/profile.d/nix.sh ]] && source {{ home }}/.nix-profile/etc/profile.d/nix.sh"
+  loop:
+    - .zshrc
+    - .profile
+
+- name: install cachix
+  command: nix-env -iA cachix -f https://cachix.org/api/v1/install
+  args:
+    creates: /nix/store/*/bin/cachix
+
+...

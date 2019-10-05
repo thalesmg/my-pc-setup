@@ -17,4 +17,7 @@
 - import_tasks: bluetooth.yml
   tags: [bluetooth]
 
+- import_tasks: nix.yml
+  tags: [nix]
+
 ...
