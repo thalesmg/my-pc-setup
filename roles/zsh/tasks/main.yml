@@ -1,6 +1,8 @@
 ---
 
 - name: installs zsh
+  become: yes
+  become_user: root
   package:
     name: zsh
     state: present
@@ -25,7 +27,16 @@
       become: yes
       become_user: "{{ my_user }}"
       register: ohmyzsh_install
-      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      shell: curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+      args:
+        creates: "{{ home }}/.oh-my-zsh/"
+
+    - name: customizations folder
+      file:
+        dest: "{{ home }}/.oh-my-zsh/custom/themes"
+        state: directory
+        owner: "{{ my_user }}"
+        mode: 0700
 
     - name: install bullettrain theme for oh my zsh
       become: yes
@@ -49,8 +60,8 @@
     dest: "{{ home }}/.profile"
     mode: 0700
 
-- name: copy .profile
-  template:
+- name: copy .xmodmap
+  copy:
     src: xmodmap
     dest: "{{ home }}/.xmodmap"
     mode: 0700

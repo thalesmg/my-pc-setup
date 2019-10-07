@@ -1,0 +1,10 @@
+---
+
+- name: ssh config
+  copy:
+    src: ssh_config
+    dest: "{{ home }}/.ssh/config"
+    mode: 0600
+    owner: "{{ my_user }}"
+
+...

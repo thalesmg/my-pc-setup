@@ -3,6 +3,9 @@
 - import_tasks: bitlbee.yml
   tags: [bitlbee]
 
+- import_tasks: ssh.yml
+  tags: [ssh]
+
 - import_tasks: ntp.yml
   tags: [ntpd]
 
