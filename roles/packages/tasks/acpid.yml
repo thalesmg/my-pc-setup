@@ -13,7 +13,7 @@
 
 - name: set card number
   set_fact:
-    acpid_sound_card_number: card_number.stdout
+    acpid_sound_card_number: "{{ card_number.stdout }}"
 
 - name: copy handler.sh
   become: yes
