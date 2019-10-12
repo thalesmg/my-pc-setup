@@ -9,7 +9,7 @@
   command: cachix use all-hies
 
 - name: install hie
-  command: nix-env -iA selection --arg selector 'p: { inherit (p) {{ nix_hie_ghc }}; }' -f 'https://github.com/infinisil/all-hies/tarball/master'
+  command: "nix-env -iA selection --arg selector 'p: {{ '{' }} inherit (p) {{ nix_hie_ghc }}; {{ '}' }}' -f 'https://github.com/infinisil/all-hies/tarball/master'"
 
 - name: install cabal-install
   command: nix-env -i cabal-install
