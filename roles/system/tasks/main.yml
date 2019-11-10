@@ -20,6 +20,11 @@
 - import_tasks: bluetooth.yml
   tags: [bluetooth]
 
+- import_tasks: netdata.yml
+  become: true
+  become_user: root
+  tags: [netdata]
+
 - import_tasks: nix.yml
   tags: [nix]
 
