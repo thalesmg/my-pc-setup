@@ -29,6 +29,7 @@
     - rofi
     - rustup
     - socat
+    - tcpdump
     - terminator
     - the_silver_searcher
     - tree
