@@ -6,4 +6,7 @@
 - import_tasks: agda.yml
   tags: [agda]
 
+- import_tasks: dhall.yml
+  tags: [dhall]
+
 ...
