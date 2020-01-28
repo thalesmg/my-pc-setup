@@ -1,0 +1,10 @@
+[Unit]
+Description=Checar se tem grupos de estudos hoje!
+Requires=bedel-bot.timer
+
+[Service]
+ExecStart=/home/thales/bin/bedel-bot
+EnvironmentFile={{ home }}/.config/bedel-bot/bedel-bot.conf
+
+[Install]
+WantedBy=default.target

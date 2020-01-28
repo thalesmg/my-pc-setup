@@ -1,0 +1,45 @@
+---
+
+- name: bedel-bot
+  assert:
+    that: bedel_bot_calendar_id is defined and bedel_bot_credentials_path is defined and bedel_bot_webhook_url is defined
+    fail_msg: Use `-e bedel_bot_calendar_id=xxx -e bedel_bot_credentials_path=xxx -e bedel_bot_webhook_url=xxx`
+
+- name: user systemd folder
+  file:
+    dest: "{{ home }}/.config/systemd/user/"
+    state: directory
+    mode: 0700
+
+- name: config folder
+  file:
+    dest: "{{ home }}/.config/bedel-bot/"
+    state: directory
+    mode: 0700
+
+- name: copy bedel-bot unit files
+  template:
+    src: "{{ item }}"
+    dest: "{{ home }}/.config/systemd/user/{{ item }}"
+    mode: 0700
+    owner: "{{ my_user }}"
+  loop:
+    - bedel-bot.timer
+    - bedel-bot.service
+
+- name: copy bedel-bot conf files
+  template:
+    src: bedel-bot.conf
+    dest: "{{ home }}/.config/bedel-bot/bedel-bot.conf"
+    mode: 0700
+    owner: "{{ my_user }}"
+
+- name: bedel-bot systemd service
+  systemd:
+    daemon_reload: yes
+    name: bedel-bot.service
+    scope: user
+    state: started
+    enabled: yes
+
+...

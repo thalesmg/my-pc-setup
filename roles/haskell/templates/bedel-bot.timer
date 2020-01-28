@@ -1,0 +1,10 @@
+[Unit]
+Description=Checar se tem grupos de estudos hoje!
+Requires=bedel-bot.service
+
+[Timer]
+OnCalendar=*-*-* 09:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

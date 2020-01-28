@@ -25,4 +25,7 @@
 - import_tasks: nix.yml
   tags: [nix]
 
+- import_tasks: bedel-bot.yml
+  tags: [bedel-bot]
+
 ...
