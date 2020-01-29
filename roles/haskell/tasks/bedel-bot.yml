@@ -2,8 +2,8 @@
 
 - name: bedel-bot
   assert:
-    that: bedel_bot_calendar_id is defined and bedel_bot_credentials_path is defined and bedel_bot_webhook_url is defined
-    fail_msg: Use `-e bedel_bot_calendar_id=xxx -e bedel_bot_credentials_path=xxx -e bedel_bot_webhook_url=xxx`
+    that: bedel_bot_calendar_id is defined and bedel_bot_credentials_path is defined and bedel_bot_webhook_urls is defined
+    fail_msg: Use `-e bedel_bot_calendar_id=xxx -e bedel_bot_credentials_path=xxx -e bedel_bot_webhook_urls=xxx`
 
 - name: user systemd folder
   file:
@@ -34,10 +34,10 @@
     mode: 0700
     owner: "{{ my_user }}"
 
-- name: bedel-bot systemd service
+- name: bedel-bot systemd timer
   systemd:
     daemon_reload: yes
-    name: bedel-bot.service
+    name: bedel-bot.timer
     scope: user
     state: started
     enabled: yes
