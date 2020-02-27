@@ -30,6 +30,16 @@
 - name: copy standard-library.agda-lib
   command: "cp -ra /usr/share/agda/lib/standard-library.agda-lib {{ home }}/.agda/standard-library.agda-lib"
 
+- name: _build dir
+  become: yes
+  become_user: root
+  file:
+    dest: /usr/share/agda/lib/_build
+    state: directory
+    group: "{{ my_user }}"
+    owner: root
+    mode: 0774
+
 - name: agda mode setup
   debug:
     msg: |
