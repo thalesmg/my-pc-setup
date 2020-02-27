@@ -8,6 +8,11 @@
     - agda
     - agda-stdlib
 
+- name: clear agda dir
+  file:
+    dest: "{{ home }}/.agda"
+    state: absent
+
 - name: agda dir
   file:
     dest: "{{ home }}/.agda"
