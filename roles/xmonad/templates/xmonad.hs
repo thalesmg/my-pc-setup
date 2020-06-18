@@ -54,8 +54,9 @@ myMiscKeys conf@XConfig{modMask = modm} = M.fromList $
   , ((modm, xK_b), sendMessage ToggleStruts)
   , ((altMask .|. controlMask, xK_l), spawn "xscreensaver-command --lock")
   , ((shiftMask .|. modm, xK_Print), spawn "peek")
-  , ((modm, xK_Print), spawn "deepin-screenshot -s {{ home }}/Pictures")
-  , ((0, xK_Print), spawn "deepin-screenshot -f -s {{ home }}/Pictures")
+  , ((modm, xK_Print), spawn "flameshot gui -p {{ home }}/Pictures/")
+  , ((0, xK_Print), spawn "flameshot full -p {{ home }}/Pictures/")
+  -- FIXME: construir script em clisp
   , ((0, xF86XK_MonBrightnessDown), spawn "{{ home }}/bin/backlight/manage_backlight.sh dec")
   , ((0, xF86XK_MonBrightnessUp), spawn "{{ home }}/bin/backlight/manage_backlight.sh inc")
   , ((modm .|. controlMask, xK_KP_Multiply), spawn "{{ home }}/bin/tmg-vlc next")
