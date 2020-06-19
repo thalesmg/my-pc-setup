@@ -4,10 +4,28 @@
   package:
     name: systemd-swap
 
+# looks like fallocate is no longer supported?
+# https://bugs.archlinux.org/task/66921
+# "Note: dynamic space allocation such as using fallocate is not
+# supported, as it causes problems with some file systems such as
+# F2FS[1] and will likely fail to activate at boot time with error
+# "swapon: swapfile has holes" as of kernel 5.7. Hence, contiguous
+# allocation, such as dd, is the only reliable way to allocate a swap
+# file.[2]"
+# - name: create swap file
+#   command: "fallocate -l {{ ansible_memtotal_mb * 2 }}M /var/local/swapf0"
+#   args:
+#     creates: /var/local/swapf0
+
 - name: create swap file
-  command: "fallocate -l {{ ansible_memtotal_mb * 2 }}M /var/local/swapf0"
+  command: dd if=/dev/zero of=/var/local/swapf0 bs=1M count={{ ansible_memtotal_mb * 2 }}
   args:
     creates: /var/local/swapf0
+
+- name: swap permissions
+  file:
+    path: /var/local/swapf0
+    mode: 0600
 
 - name: checks swap file
   command: swaplabel /var/local/swapf0
