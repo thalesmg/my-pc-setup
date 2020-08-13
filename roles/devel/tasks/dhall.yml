@@ -9,10 +9,15 @@
       - --strip=2
       - --wildcards
       - '*/*dhall*'
+  vars:
+    dhall_version: 1.34.0
+    dhall_json_version: 1.7.1
+    dhall_yaml_version: 1.2.1
+    dhall_lsp_version: 1.0.9
   loop:
-    - https://github.com/dhall-lang/dhall-haskell/releases/download/1.32.0/dhall-1.32.0-x86_64-linux.tar.bz2
-    - https://github.com/dhall-lang/dhall-haskell/releases/download/1.32.0/dhall-json-1.6.4-x86_64-linux.tar.bz2
-    - https://github.com/dhall-lang/dhall-haskell/releases/download/1.32.0/dhall-yaml-1.1.0-x86_64-linux.tar.bz2
-    - https://github.com/dhall-lang/dhall-haskell/releases/download/1.32.0/dhall-lsp-server-1.0.7-x86_64-linux.tar.bz2
+    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-{{ dhall_version }}-x86_64-linux.tar.bz2"
+    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-json-{{ dhall_json_version }}-x86_64-linux.tar.bz2"
+    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-yaml-{{ dhall_yaml_version }}-x86_64-linux.tar.bz2"
+    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-lsp-server-{{ dhall_lsp_version }}-x86_64-linux.tar.bz2"
 
 ...
