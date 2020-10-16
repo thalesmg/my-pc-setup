@@ -1,5 +1,23 @@
 ---
 
+- set_fact:
+    dhall_version: "1.35.0"
+
+- name: get releases
+  uri:
+    url: "https://api.github.com/repos/dhall-lang/dhall-haskell/releases/tags/{{ dhall_version }}"
+    return_content: yes
+  register: dhall_releases
+
+- name: filter urls
+  set_fact:
+    dhall_urls: '{{ dhall_releases.json.assets
+                    | selectattr("name", "match", regex)
+                    | map(attribute="browser_download_url")
+                 }}'
+  vars:
+    regex: "dhall(|-json|-yaml|-lsp-server)-[.0-9]+-x86_64-linux.tar.bz2"
+
 - name: get dhall binaries
   unarchive:
     src: "{{ item }}"
@@ -9,15 +27,6 @@
       - --strip=2
       - --wildcards
       - '*/*dhall*'
-  vars:
-    dhall_version: 1.34.0
-    dhall_json_version: 1.7.1
-    dhall_yaml_version: 1.2.1
-    dhall_lsp_version: 1.0.9
-  loop:
-    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-{{ dhall_version }}-x86_64-linux.tar.bz2"
-    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-json-{{ dhall_json_version }}-x86_64-linux.tar.bz2"
-    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-yaml-{{ dhall_yaml_version }}-x86_64-linux.tar.bz2"
-    - "https://github.com/dhall-lang/dhall-haskell/releases/download/{{ dhall_version }}/dhall-lsp-server-{{ dhall_lsp_version }}-x86_64-linux.tar.bz2"
+  loop: "{{ dhall_urls }}"
 
 ...
