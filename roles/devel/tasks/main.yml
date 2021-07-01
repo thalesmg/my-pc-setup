@@ -9,4 +9,7 @@
 - import_tasks: dhall.yml
   tags: [dhall]
 
+- import_tasks: clj-kondo.yml
+  tags: [clj_kondo]
+
 ...

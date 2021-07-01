@@ -1,0 +1,28 @@
+---
+
+- set_fact:
+    clj_kondo_version: "v2021.06.18"
+
+- name: get releases
+  uri:
+    url: "https://api.github.com/repos/clj-kondo/clj-kondo/releases/tags/{{ clj_kondo_version }}"
+    return_content: yes
+  register: clj_kondo_releases
+
+- name: filter urls
+  set_fact:
+    clj_kondo_urls: '{{ clj_kondo_releases.json.assets
+                    | selectattr("name", "match", regex)
+                    | map(attribute="browser_download_url")
+                 }}'
+  vars:
+    regex: "clj-kondo-[.0-9]+-linux-amd64.zip"
+
+- name: get clj-kondo binaries
+  unarchive:
+    src: "{{ item }}"
+    dest: "{{ home }}/bin/"
+    remote_src: yes
+  loop: "{{ clj_kondo_urls }}"
+
+...
