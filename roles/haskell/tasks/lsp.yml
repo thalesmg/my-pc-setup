@@ -1,0 +1,44 @@
+---
+
+- set_fact:
+    ghc_version: "8.10.5"
+    lsp_version: "1.2.0"
+
+- name: get releases
+  uri:
+    url: "https://api.github.com/repos/haskell/haskell-language-server/releases/tags/{{ lsp_version }}"
+    return_content: yes
+  register: lsp_releases
+
+- name: filter urls
+  set_fact:
+    lsp_urls: '{{ lsp_releases.json.assets
+                    | selectattr("name", "match", regex)
+                    | map(attribute="browser_download_url")
+                 }}'
+  vars:
+    regex: "haskell-language-server-Linux-{{ ghc_version }}.gz"
+
+- name: get lsp binaries
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ home }}/bin/"
+  loop: "{{ lsp_urls }}"
+
+- name: gunzip lsp archive
+  command:
+    cmd: "gunzip haskell-language-server-Linux-{{ ghc_version }}.gz"
+    chdir: "{{ home }}/bin/"
+
+- name: rename binary
+  command:
+    cmd: "mv haskell-language-server-Linux-{{ ghc_version }} haskell-language-server"
+  args:
+    chdir: "{{ home }}/bin/"
+
+- name: remove lsp archive
+  file:
+    path: "{{ home }}/bin/haskell-language-server-Linux-{{ ghc_version }}.gz"
+    state: absent
+
+...

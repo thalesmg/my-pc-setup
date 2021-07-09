@@ -28,4 +28,7 @@
 - import_tasks: bedel-bot.yml
   tags: [bedel-bot]
 
+- import_tasks: lsp.yml
+  tags: [haskell-lsp]
+
 ...
