@@ -36,6 +36,11 @@
   args:
     chdir: "{{ home }}/bin/"
 
+- name: chmod lsp binary
+  file:
+    path: "{{ home }}/bin/haskell-language-server"
+    mode: "0755"
+
 - name: remove lsp archive
   file:
     path: "{{ home }}/bin/haskell-language-server-Linux-{{ ghc_version }}.gz"
