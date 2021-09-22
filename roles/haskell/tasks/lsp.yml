@@ -1,8 +1,8 @@
 ---
 
 - set_fact:
-    ghc_version: "8.10.5"
-    lsp_version: "1.2.0"
+    ghc_version: "8.10.7"
+    lsp_version: "1.4.0"
 
 - name: get releases
   uri:
