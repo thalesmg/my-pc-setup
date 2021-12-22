@@ -18,7 +18,7 @@
 #     creates: /var/local/swapf0
 
 - name: create swap file
-  command: dd if=/dev/zero of=/var/local/swapf0 bs=1M count={{ ansible_memtotal_mb * 2 }}
+  command: 'dd if=/dev/zero of=/var/local/swapf0 bs=1M count={{ tmg_swap_memtotal_mb | default(ansible_memtotal_mb * 2) }}'
   args:
     creates: /var/local/swapf0
 
@@ -42,6 +42,14 @@
     path: /etc/fstab
     line: "/var/local/swapf0 none swap defaults 0 0"
     insertafter: EOF
+
+- name: ensure swap.conf.d dir
+  file:
+    dest: "/etc/systemd/swap.conf.d"
+    mode: 0755
+    owner: root
+    group: root
+    state: directory
 
 - name: configure zram
   copy:
