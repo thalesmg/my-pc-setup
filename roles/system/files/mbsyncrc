@@ -1,0 +1,28 @@
+# apple
+IMAPAccount appleaccount
+Host imap.mail.me.com
+User thalesmg
+PassCmd "pass imap.mail.me.com/mailpass"
+Port 993
+SSLType IMAPS
+AuthMechs *
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore appleaccount-remote
+Account appleaccount
+
+MaildirStore appleaccount-local
+Path ~/email/mbsyncmail/
+Inbox ~/email/mbsyncmail/INBOX
+SubFolders Verbatim
+
+Channel appleaccount
+Far :appleaccount-remote:
+Near :appleaccount-local:
+Patterns *
+Create Near
+Sync All
+Expunge None
+SyncState *
+MaxMessages 100
+ExpireUnread yes

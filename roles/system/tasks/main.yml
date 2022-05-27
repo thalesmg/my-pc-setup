@@ -28,4 +28,7 @@
 - import_tasks: nix.yml
   tags: [nix]
 
+- import_tasks: mail.yml
+  tags: [mail]
+
 ...
