@@ -51,12 +51,12 @@
       become_user: "{{ my_user }}"
       when: ohmyzsh_install is changed or zsh_install | default(False)
       template:
-        src: .zshrc.j2
+        src: zshrc
         dest: "{{ ansible_env.HOME }}/.zshrc"
 
 - name: copy .profile
   template:
-    src: .profile
+    src: profile
     dest: "{{ home }}/.profile"
     mode: 0700
 

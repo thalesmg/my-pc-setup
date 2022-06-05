@@ -1,34 +1,15 @@
 ---
 
-- name: check whether stack is installed
-  stat:
-    path: "{{ item }}"
-  loop:
-    - /usr/local/bin/stack
-    - /usr/bin/stack
-  register: stack
-  changed_when: not stack or not stack.stat.exists
-
-- include: installation.yml
-  when: stack.changed
-
-- name: upgrade stack
-  shell: stack update && stack upgrade
-
-- name: .ghci
-  copy:
-    src: ghci
-    dest: "{{ home }}/.ghci"
-    mode: 0755
-    owner: "{{ my_user }}"
+- import_tasks: stack.yml
+  tags: [stack]
 
 - import_tasks: nix.yml
   tags: [nix]
 
-- import_tasks: bedel-bot.yml
-  tags: [bedel-bot]
+# - import_tasks: bedel-bot.yml
+#   tags: [bedel-bot]
 
-- import_tasks: lsp.yml
-  tags: [haskell-lsp]
+# - import_tasks: lsp.yml
+#   tags: [haskell-lsp]
 
 ...

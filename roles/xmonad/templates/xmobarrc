@@ -2,11 +2,12 @@
 
 Config {
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+     font =         "xft:Bitstream Vera Sans Mono:size=7:bold:antialias=true"
    , bgColor =      "black"
    , fgColor =      "#C6C6C6"
-   , position =     Top
-   , border =       BottomB
+   -- , position =     Top
+   , position =     Bottom
+   , border =       TopB
    , borderColor =  "#646464"
 
    -- layout
@@ -39,7 +40,9 @@ Config {
    , commands =
 
         -- weather monitor
-        [ Run Weather "SBSP" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
+        [
+          Run Weather "SBSP" [ "--template"
+                             , "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)

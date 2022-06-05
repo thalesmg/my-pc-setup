@@ -1,3 +1,4 @@
+# -*- mode: sh; -*-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -96,12 +97,23 @@ export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+command -v rustc && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # fazer o terminal parar de travar com C-s
 stty -ixon
 # repetição
 xset r rate 240 42
 
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
+[[ -f "$HOME/.asdf/asdf.sh" ]] && . "$HOME/.asdf/asdf.sh"
+[[ -f "$HOME/.asdf/completions/asdf.bash" ]] && . "$HOME/.asdf/completions/asdf.bash"
+
+if [ -f "/home/thales/.cargo/bin/teleport.sh" -a -x "/home/thales/.cargo/bin/teleport.sh" ]
+then
+  . /home/thales/.cargo/bin/teleport.sh
+fi
+
+autoload -U compinit && compinit
+
+[ -f /home/thales/.nix-profile/etc/profile.d/nix.sh ] && source /home/thales/.nix-profile/etc/profile.d/nix.sh
+
+[[ -d /home/thales/.ghcup/bin ]] && export PATH="/home/thales/.ghcup/bin:$PATH"

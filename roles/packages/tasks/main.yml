@@ -1,41 +1,49 @@
 ---
 
-- name: install packages
+- name: install basic packages
   become: yes
   become_user: root
+  labels: [bootstrap]
   package:
     name: "{{ item }}"
     state: present
   loop:
     - acpid
+    - alsa-utils
     - ansible
+    - arandr
+    - bat
     - bind-tools
+    - bluez-firmware
+    - bluez-tools
+    - bluez-utils
     - curl
     - dmenu
-    - emacs
     - expect
-    - figlet
-    - flameshot
+    - firefox
     - fzf
     - git
     - gnupg
-    - idris
+    - inetutils
     - inotify-tools
-    - keynav
     - mtr
+    - nano
+    - neovim
     - openbsd-netcat
     - openssh
+    - otf-symbola
     - pass
+    - pavucontrol
+    - pv
     - python-pip
     - ripgrep
     - rofi
-    - rustup
     - socat
     - tcpdump
     - terminator
-    - the_silver_searcher
+    - tmux
     - tree
-    - vim
+    - vi
     - vlc
     - wget
     - whois
@@ -44,12 +52,41 @@
     - xorg-drivers
     - xscreensaver
 
+- name: install extra packages
+  become: yes
+  become_user: root
+  labels: [bootstrap]
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - calibre
+    - cowsay
+    - dmenu
+    - feh
+    - figlet
+    - flameshot
+    - keynav
+    - helm
+    - hexyl
+    - hunspell-pt-br
+    - p7zip
+    - pakku
+    - parallel
+    - rustup
+    - ttf-roboto
+    - ttf-roboto-mono
+
 - name: install aur packages
   include_tasks: aura.yml
+  labels: [bootstrap]
   vars:
     package: "{{ item }}"
   loop:
+    - brave-bin
     - duc
+    - pass-git-helper
+    - powerline-fonts-git
 
 - import_tasks: vlc.yml
   tags: [vlc]

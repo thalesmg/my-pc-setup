@@ -1,0 +1,25 @@
+---
+
+- name: check whether stack is installed
+  stat:
+    path: "{{ item }}"
+  loop:
+    - /usr/local/bin/stack
+    - /usr/bin/stack
+  register: stack
+  changed_when: not stack or not stack.stat.exists
+
+- include: installation.yml
+  when: stack.changed
+
+- name: upgrade stack
+  shell: stack upgrade && stack update
+
+- name: .ghci
+  copy:
+    src: ghci
+    dest: "{{ home }}/.ghci"
+    mode: 0755
+    owner: "{{ my_user }}"
+
+...

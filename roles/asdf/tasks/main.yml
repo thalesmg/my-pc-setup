@@ -4,7 +4,7 @@
   git:
     repo: https://github.com/asdf-vm/asdf.git
     dest: "{{ ansible_env.HOME }}/.asdf"
-    version: v0.5.1
+    version: v0.10.1
 
 - name: add to .zshrc
   lineinfile:
@@ -16,11 +16,11 @@
     - '. "$HOME/.asdf/asdf.sh"'
     - '. "$HOME/.asdf/completions/asdf.bash"'
 
-- include_tasks: plugins.yml
-  loop:
-    - program: nodejs
-      version: 10.10.0
-  loop_control:
-    label: "{{ item.program }}: {{ item.version }}"
+# - include_tasks: plugins.yml
+#   loop:
+#     - program: nodejs
+#       version: 10.10.0
+#   loop_control:
+#     label: "{{ item.program }}: {{ item.version }}"
 
 ...

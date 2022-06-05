@@ -29,6 +29,8 @@
       tags: [gnupg]
     - role: zsh
       tags: [zsh]
+    - role: emacs
+      tags: [emacs]
     - role: system
       tags: [system]
     - role: asdf

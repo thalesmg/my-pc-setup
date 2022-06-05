@@ -1,0 +1,16 @@
+# -*- mode: sh; -*-
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
+export GTK_THEME=Adwaita:dark
+export EDITOR=emacsclient
+export QT_QPA_PLATFORMTHEME=qt5ct
+# setxkbmap -model abnt2 -layout br -variant abnt2
+setxkbmap -layout us -variant intl
+xinput set-button-map 'Bluetooth Mouse M336/M337/M535 Mouse' 3 2 1 4 5
+xmodmap "$HOME/.xmodmap"
+# xscreensaver &
+xset r rate 240 42
+
+[[ -f /home/thales/.nix-profile/etc/profile.d/nix.sh ]] && source /home/thales/.nix-profile/etc/profile.d/nix.sh
+[[ -d /home/thales/.ghcup/bin ]] && export PATH="/home/thales/.ghcup/bin:$PATH"

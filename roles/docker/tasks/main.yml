@@ -17,3 +17,5 @@
     name: "{{ my_user }}"
     append: yes
     groups: docker
+
+...
