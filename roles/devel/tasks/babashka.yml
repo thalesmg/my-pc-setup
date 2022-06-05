@@ -1,0 +1,28 @@
+---
+
+- set_fact:
+    babashka_version: "0.8.2"
+
+- name: get releases
+  uri:
+    url: "https://api.github.com/repos/babashka/babashka/releases/tags/{{ babashka_version }}"
+    return_content: yes
+  register: babashka_releases
+
+- name: filter urls
+  set_fact:
+    babashka_urls: '{{ babashka_releases.json.assets
+                    | selectattr("name", "match", regex)
+                    | map(attribute="browser_download_url")
+                 }}'
+  vars:
+    regex: "babashka-[.0-9]+-linux-amd64-static.tar.gz"
+
+- name: get babashka binaries
+  unarchive:
+    src: "{{ item }}"
+    dest: "{{ home }}/bin/"
+    remote_src: yes
+  loop: "{{ babashka_urls }}"
+
+...

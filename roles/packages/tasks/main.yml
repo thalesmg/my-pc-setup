@@ -83,10 +83,12 @@
   vars:
     package: "{{ item }}"
   loop:
+    - adwaita-qt5
     - brave-bin
     - duc
     - pass-git-helper
     - powerline-fonts-git
+    - qt5ct
 
 - import_tasks: vlc.yml
   tags: [vlc]

@@ -8,7 +8,6 @@
     my_user: "thales"
     home: "{{ ansible_env.HOME }}"
 
-  remote_user: "{{ my_user }}"
   become: yes
   become_user: "{{ my_user }}"
 

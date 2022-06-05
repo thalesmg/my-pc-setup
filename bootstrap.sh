@@ -25,10 +25,10 @@ sudo pacman -Sy --noconfirm git curl wget ansible
 
 ansible-playbook -i hosts default.yml -K -t aura_install
 
-ansible-playbook -i hosts default.yml -K -t bootstrap,gnupg,emacs
+ansible-playbook -i hosts default.yml -K -t user_setup,bootstrap,gnupg,emacs
 
 ansible-playbook -i hosts default.yml -K -t xmonad,cl-scripts,asdf
 
 ansible-playbook -i hosts default.yml -K -t ntpd,swap,bluetooth
 
-ansible-playbook -i hosts default.yml -K -t stack,docker
+ansible-playbook -i hosts default.yml -K -t stack,docker,vlc
