@@ -20,6 +20,7 @@
     - curl
     - dmenu
     - expect
+    - fd
     - firefox
     - fzf
     - git

@@ -11,6 +11,15 @@
     - bluez-libs
     - bluez-utils
     - bluez-tools
+    - pulseaudio-bluetooth
+
+- name: auto power on
+  become: yes
+  become_user: root
+  lineinfile:
+    path: /etc/bluetooth/main.conf
+    regexp: '^#AutoEnable'
+    line: "AutoEnable=true"
 
 - name: mouse config
   become: yes
