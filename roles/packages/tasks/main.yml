@@ -32,6 +32,8 @@
     - openssh
     - pass
     - pavucontrol
+    - pulseaudio
+    - pulseaudio-alsa
     - pv
     - python-pip
     - ripgrep
