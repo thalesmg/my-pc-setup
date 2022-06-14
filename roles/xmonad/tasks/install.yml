@@ -12,5 +12,7 @@
     - xmobar
     # para tabbed simple
     - xorg-fonts-misc
+    - dmenu
+    - rofi
 
 ...

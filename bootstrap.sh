@@ -21,9 +21,11 @@ install_rpw() {
 
 sudo pacman -Sy --noconfirm git curl wget ansible
 
-[[ -f "$HOME/bin/rpw" ]] || install_rpw && echo re-run with rpw! && exit 1
+#[[ -f "$HOME/bin/rpw" ]] || install_rpw && echo re-run with rpw! && exit 1
 
 ansible-playbook -i hosts default.yml -K -t aura_install
+
+ansible-playbook -i hosts default.yml -K -t zsh
 
 ansible-playbook -i hosts default.yml -K -t user_setup,bootstrap,gnupg,emacs
 

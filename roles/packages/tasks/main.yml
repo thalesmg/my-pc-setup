@@ -3,7 +3,7 @@
 - name: install basic packages
   become: yes
   become_user: root
-  labels: [bootstrap]
+  tags: [bootstrap]
   package:
     name: "{{ item }}"
     state: present
@@ -14,7 +14,6 @@
     - arandr
     - bat
     - bind-tools
-    - bluez-firmware
     - bluez-tools
     - bluez-utils
     - curl
@@ -31,7 +30,6 @@
     - neovim
     - openbsd-netcat
     - openssh
-    - otf-symbola
     - pass
     - pavucontrol
     - pv
@@ -51,11 +49,12 @@
     - xorg
     - xorg-drivers
     - xscreensaver
+    - unzip
 
 - name: install extra packages
   become: yes
   become_user: root
-  labels: [bootstrap]
+  tags: [bootstrap]
   package:
     name: "{{ item }}"
     state: present
@@ -66,12 +65,13 @@
     - feh
     - figlet
     - flameshot
+    - jq
     - keynav
     - helm
     - hexyl
-    - hunspell-pt-br
+    # - hunspell-pt-br
     - p7zip
-    - pakku
+    # - pakku
     - parallel
     - rustup
     - ttf-roboto
@@ -79,13 +79,15 @@
 
 - name: install aur packages
   include_tasks: aura.yml
-  labels: [bootstrap]
+  tags: [bootstrap]
   vars:
     package: "{{ item }}"
   loop:
     - adwaita-qt5
+    # - bluez-firmware
     - brave-bin
     - duc
+    - otf-symbola
     - pass-git-helper
     - powerline-fonts-git
     - qt5ct

@@ -43,7 +43,7 @@
     - name: package name
       find:
         paths: /tmp/aura-bin
-        patterns: "aura-bin-\\d+.\\d+.\\d+-\\d+-x86_64\\.pkg\\.tar\\.xz"
+        patterns: "aura-bin-\\d+.\\d+.\\d+-\\d+-x86_64\\.pkg\\.tar\\.zst"
         use_regex: yes
       register: package
 

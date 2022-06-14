@@ -13,6 +13,8 @@
 
   tasks:
     - name: setup user groups
+      become: yes
+      become_user: root
       user:
         name: "{{ my_user }}"
         groups: root,sys,log,power,adm,wheel,disk,lp,storage,uucp,users,dbus,input
