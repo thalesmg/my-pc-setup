@@ -9,6 +9,7 @@
     state: present
   loop:
     - acpid
+    - adwaita-qt5
     - alsa-utils
     - ansible
     - arandr
@@ -34,8 +35,10 @@
     - pavucontrol
     - pulseaudio
     - pulseaudio-alsa
+    - pulseaudio-bluetooth
     - pv
     - python-pip
+    - qt5ct
     - ripgrep
     - rofi
     - socat
@@ -71,9 +74,7 @@
     - keynav
     - helm
     - hexyl
-    # - hunspell-pt-br
     - p7zip
-    # - pakku
     - parallel
     - rustup
     - ttf-roboto
@@ -85,14 +86,14 @@
   vars:
     package: "{{ item }}"
   loop:
-    - adwaita-qt5
     # - bluez-firmware
     - brave-bin
     - duc
+    - hunspell-pt-br
     - otf-symbola
+    - pakku
     - pass-git-helper
     - powerline-fonts-git
-    - qt5ct
 
 - import_tasks: vlc.yml
   tags: [vlc]
