@@ -1,0 +1,10 @@
+---
+
+- name: set aliases
+  shell: |
+    git config --global alias.co checkout
+    git config --global url.git@github.com:emqx/.insteadOf https://github.com/emqx/
+    git config --global user.name "{{ git_user_name }}"
+    git config --global user.email "{{ git_email }}"
+
+...

@@ -18,6 +18,7 @@
     - bluez-tools
     - bluez-utils
     - curl
+    - dialog
     - dmenu
     - expect
     - fd
@@ -27,9 +28,11 @@
     - gnupg
     - inetutils
     - inotify-tools
+    - iwd
     - mtr
     - nano
     - neovim
+    - netctl
     - openbsd-netcat
     - openssh
     - pass
@@ -51,6 +54,7 @@
     - vlc
     - wget
     - whois
+    - wpa_supplicant
     - xclip
     - xorg
     - xorg-drivers
@@ -75,6 +79,7 @@
     - keynav
     - helm
     - hexyl
+    - hunspell-en_us
     - p7zip
     - parallel
     - rustup
