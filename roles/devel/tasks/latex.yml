@@ -1,0 +1,15 @@
+---
+
+- name: install packages
+  become: yes
+  become_user: root
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - texlive-bin
+    - texlive-core
+    - texlive-latexextra
+    - texlive-science
+
+...

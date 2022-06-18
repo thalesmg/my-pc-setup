@@ -12,4 +12,7 @@
 - import_tasks: clj-kondo.yml
   tags: [clj_kondo]
 
+- import_tasks: latex.yml
+  tags: [latex]
+
 ...
