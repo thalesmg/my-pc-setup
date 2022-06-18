@@ -13,7 +13,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% }{ %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %SBSP% | %date%"
+   , template = "%StdinReader% }{ %battery% | %multicpu% | %multicoretemp% | %memory% | %dynnetwork% | %SBSP% | %date%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -55,7 +55,7 @@ Config {
                              ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "Cpu: {{ range(ansible_processor_vcpus)|map('regex_replace', '^(.+)$', '<total\\1>%')|join('|') }}"
+        , Run MultiCpu       [ "--template" , "Cpu: <total> %"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "lime"
@@ -64,7 +64,7 @@ Config {
                              ] 10
 
         -- cpu core temperature monitor
-        , Run CoreTemp       [ "--template" , "Temp: {{ range(ansible_processor_cores)|map('regex_replace', '^(.+)$', '<core\\1>°C')|join('|') }}"
+        , Run MultiCoreTemp  [ "--template" , "Temp: <avg>-<max> °C"
                              , "--Low"      , "70"        -- units: °C
                              , "--High"     , "80"        -- units: °C
                              , "--low"      , "lime"
