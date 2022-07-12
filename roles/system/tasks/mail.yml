@@ -1,6 +1,10 @@
 ---
 
+# https://f-santos.gitlab.io/2020-04-24-mu4e.html
+
 - name: install packages
+  become: yes
+  become_user: root
   package:
     name: "{{ item }}"
     state: present
