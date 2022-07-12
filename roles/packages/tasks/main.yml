@@ -80,9 +80,11 @@
     - helm
     - hexyl
     - hunspell-en_us
+    - net-tools
     - p7zip
     - parallel
     - rustup
+    - strace
     - ttf-roboto
     - ttf-roboto-mono
 
