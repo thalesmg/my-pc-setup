@@ -51,6 +51,7 @@ extraWorkspaceKeys conf@XConfig{modMask = modm} = M.fromList $
 myMiscKeys conf@XConfig{modMask = modm} = M.fromList $
   [ ((modm, xK_p), spawn "rofi -show run")
   , ((modm .|. shiftMask, xK_p), spawn "passmenu")
+  , ((modm .|. controlMask, xK_j), spawn "rofimoji")
   , ((modm, xK_b), sendMessage ToggleStruts)
   , ((altMask .|. controlMask, xK_l), spawn "xscreensaver-command --lock")
   , ((shiftMask .|. modm, xK_Print), spawn "peek")
