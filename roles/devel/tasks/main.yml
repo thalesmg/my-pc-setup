@@ -15,4 +15,10 @@
 - import_tasks: latex.yml
   tags: [latex]
 
+- import_tasks: kvm-qemu.yml
+  tags: [kvm_qemu]
+
+- import_tasks: babashka.yml
+  tags: [babashka]
+
 ...

@@ -1,7 +1,7 @@
 ---
 
 - set_fact:
-    babashka_version: "0.8.2"
+    babashka_version: "v0.8.157"
 
 - name: get releases
   uri:
