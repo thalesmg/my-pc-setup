@@ -1,7 +1,10 @@
 ---
 
-- import_tasks: stack.yml
-  tags: [stack]
+# - import_tasks: stack.yml
+#   tags: [stack]
+
+- import_tasks: ghcup.yml
+  tags: [ghcup]
 
 - import_tasks: nix.yml
   tags: [nix]

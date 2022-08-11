@@ -1,0 +1,26 @@
+---
+
+- name: download ghcup installer
+  get_url:
+    url: https://get-ghcup.haskell.org
+    dest: /tmp/get-ghcup.sh
+    mode: '0777'
+
+- name: install ghcup
+  command: /tmp/get-ghcup.sh
+  environment:
+    BOOTSTRAP_HASKELL_NONINTERACTIVE: 1
+    BOOTSTRAP_HASKELL_MINIMAL: 1
+
+- name: remove install script
+  file:
+    path: /tmp/get-ghcup.sh
+    state: absent
+
+- name: install stack
+  command: ghcup install stack latest
+
+- name: install ghc
+  command: ghcup install ghc 9.0.2
+
+...
