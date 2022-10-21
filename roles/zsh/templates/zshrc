@@ -97,6 +97,8 @@ export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+## rustup toolchain install nightly
+## rustup component add rustc-dev --toolchain=nightly
 ## rustup component add rust-src
 command -v rustc && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
