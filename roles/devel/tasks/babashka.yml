@@ -1,11 +1,11 @@
 ---
 
 - set_fact:
-    babashka_version: "v0.8.157"
+    babashka_version: "1.0.164"
 
 - name: get releases
   uri:
-    url: "https://api.github.com/repos/babashka/babashka/releases/tags/{{ babashka_version }}"
+    url: "https://api.github.com/repos/babashka/babashka/releases/tags/v{{ babashka_version }}"
     return_content: yes
   register: babashka_releases
 
@@ -16,7 +16,7 @@
                     | map(attribute="browser_download_url")
                  }}'
   vars:
-    regex: "babashka-[.0-9]+-linux-amd64-static.tar.gz"
+    regex: "^babashka-[.0-9]+-linux-amd64-static.tar.gz$"
 
 - name: get babashka binaries
   unarchive:
