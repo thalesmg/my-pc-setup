@@ -107,7 +107,7 @@ myConfig xmobarProc = def
                        , startupHook = myStartupHook >> startupHook def
                        , logHook = dynamicLogWithPP xmobarPP { ppOutput = hPutStrLn xmobarProc }
                        , handleEventHook = handleEventHook def
-                                           <+> docksEventHook
+                                           -- <+> docksEventHook
                        , keys = myKeys
                        , terminal = "terminator"
                        } -- `additionalKeys` extraWorkspaceKeys
