@@ -2,7 +2,8 @@
 
 Config {
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=7:bold:antialias=true"
+     -- font =         "xft:Bitstream Vera Sans Mono:size=7:bold:antialias=true"
+     font =         "Bitstream Vera Sans Mono Bold 6"
    , bgColor =      "black"
    , fgColor =      "#C6C6C6"
    -- , position =     Top
