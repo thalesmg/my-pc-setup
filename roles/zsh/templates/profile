@@ -11,6 +11,7 @@ xinput set-button-map 'Bluetooth Mouse M336/M337/M535 Mouse' 3 2 1 4 5
 xmodmap "$HOME/.xmodmap"
 # xscreensaver &
 xset r rate 240 42
+xsetroot -bg "#000000" -solid "#000000" -cursor_name left_ptr
 
 [[ -f /home/thales/.nix-profile/etc/profile.d/nix.sh ]] && source /home/thales/.nix-profile/etc/profile.d/nix.sh
 [[ -d /home/thales/.ghcup/bin ]] && export PATH="/home/thales/.ghcup/bin:$PATH"
