@@ -35,6 +35,7 @@
     - netctl
     - openbsd-netcat
     - openssh
+    - pacman-contrib
     - pass
     - pavucontrol
     - pulseaudio
