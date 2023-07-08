@@ -11,7 +11,7 @@
     - bluez-libs
     - bluez-utils
     - bluez-tools
-    - pulseaudio-bluetooth
+    # - pulseaudio-bluetooth # replaced by pipewire-pulse
 
 - name: auto power on
   become: yes

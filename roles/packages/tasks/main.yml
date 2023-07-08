@@ -38,9 +38,11 @@
     - pacman-contrib
     - pass
     - pavucontrol
-    - pulseaudio
-    - pulseaudio-alsa
-    - pulseaudio-bluetooth
+    - pipewire-alsa
+    - pipewire-pulse
+    # - pulseaudio # replaced by pipewire-pulse
+    # - pulseaudio-alsa # replaced by pipewire-alsa
+    # - pulseaudio-bluetooth # replaced by pipewire-pulse
     - pv
     - python-pip
     - qt5ct
