@@ -7,5 +7,7 @@
     git config --global user.name "{{ git_user_name }}"
     git config --global user.email "{{ git_email }}"
     git config --global init.defaultBranch main
+    # https://git-scm.com/book/en/v2/Git-Tools-Rerere
+    git config --global rerere.enabled true
 
 ...
