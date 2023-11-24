@@ -33,6 +33,7 @@
     - nano
     - neovim
     - netctl
+    - nmon # monitoring/benchmarking
     - openbsd-netcat
     - openssh
     - pacman-contrib
