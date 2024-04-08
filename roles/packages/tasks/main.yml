@@ -17,6 +17,7 @@
     - bind-tools
     - bluez-tools
     - bluez-utils
+    - cups
     - curl
     - dialog
     - dmenu
@@ -29,6 +30,7 @@
     - inetutils
     - inotify-tools
     - iwd
+    - hplip # hp printers
     - mtr
     - nano
     - neovim
@@ -50,6 +52,7 @@
     - ripgrep
     - rofi
     - socat
+    - system-config-printer # gui
     - tcpdump
     - terminator
     - tmux
