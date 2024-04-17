@@ -26,16 +26,20 @@
     group: "{{ my_user }}"
     state: directory
 
+- name: set maildir
+  set_fact:
+    my_maildir: "{{ my_maildir | default(home + '/email/mbsyncmail/') }}"
+
 - name: ensure mbsync dir
   file:
-    dest: "{{ home }}/email/mbsyncmail/"
+    dest: "{{ my_maildir }}"
     mode: 0700
     owner: "{{ my_user }}"
     group: "{{ my_user }}"
     state: directory
 
 - name: mbsyncrc file
-  copy:
+  template:
     src: mbsyncrc
     dest: "{{ home }}/.config/mbsync/.mbsyncrc"
     owner: "{{ my_user }}"
@@ -45,7 +49,7 @@
   command: 'mbsync --config "{{ home }}/.config/mbsync/.mbsyncrc" appleaccount'
 
 - name: mu init
-  command: 'mu init --maildir="{{ home }}"/email/mbsyncmail/'
+  command: 'mu init --maildir="{{ my_maildir }}"'
 
 - name: mu index
   command: 'mu index'

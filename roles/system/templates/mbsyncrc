@@ -12,8 +12,8 @@ IMAPStore appleaccount-remote
 Account appleaccount
 
 MaildirStore appleaccount-local
-Path ~/email/mbsyncmail/
-Inbox ~/email/mbsyncmail/INBOX
+Path {{ my_maildir }}
+Inbox {{ my_maildir }}/INBOX
 SubFolders Verbatim
 
 Channel appleaccount
