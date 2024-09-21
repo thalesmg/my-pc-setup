@@ -31,4 +31,7 @@
 - import_tasks: mail.yml
   tags: [mail]
 
+- import_tasks: touchpad.yaml
+  tags: [touchpad]
+
 ...
