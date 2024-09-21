@@ -5,98 +5,96 @@
   become_user: root
   tags: [bootstrap]
   package:
-    name: "{{ item }}"
+    name:
+      - acpid
+      # - adwaita-qt5
+      - alsa-utils
+      - ansible
+      - arandr
+      - bat
+      - bind-tools
+      - bluez-tools
+      - bluez-utils
+      - cups
+      - curl
+      - dialog
+      - dmenu
+      - expect
+      - fcitx5-im # input methods (e.g. japanese) + GUIs
+      - fcitx5-mozc # input method for japanese
+      - fd
+      - firefox
+      - fzf
+      - git
+      - gnupg
+      - inetutils
+      - inotify-tools
+      - iwd
+      - hplip # hp printers
+      - mtr
+      - nano
+      - neovim
+      # - netctl
+      - nmon # monitoring/benchmarking
+      - openbsd-netcat
+      - openssh
+      - pacman-contrib
+      - pass
+      - pavucontrol
+      - pipewire-alsa
+      - pipewire-pulse
+      # - pulseaudio # replaced by pipewire-pulse
+      # - pulseaudio-alsa # replaced by pipewire-alsa
+      # - pulseaudio-bluetooth # replaced by pipewire-pulse
+      - pv
+      - python-pip
+      - qt5ct
+      - ripgrep
+      - rofi
+      - socat
+      - system-config-printer # gui
+      - tcpdump
+      - terminator
+      - tmux
+      - tree
+      - vi
+      - vlc
+      - wget
+      - whois
+      - wpa_supplicant
+      - xclip
+      - xorg
+      - xorg-drivers
+      - xscreensaver
+      - unzip
     state: present
-  loop:
-    - acpid
-    # - adwaita-qt5
-    - alsa-utils
-    - ansible
-    - arandr
-    - bat
-    - bind-tools
-    - bluez-tools
-    - bluez-utils
-    - cups
-    - curl
-    - dialog
-    - dmenu
-    - expect
-    - fcitx5-im # input methods (e.g. japanese) + GUIs
-    - fcitx5-mozc # input method for japanese
-    - fd
-    - firefox
-    - fzf
-    - git
-    - gnupg
-    - inetutils
-    - inotify-tools
-    - iwd
-    - hplip # hp printers
-    - mtr
-    - nano
-    - neovim
-    # - netctl
-    - nmon # monitoring/benchmarking
-    - openbsd-netcat
-    - openssh
-    - pacman-contrib
-    - pass
-    - pavucontrol
-    - pipewire-alsa
-    - pipewire-pulse
-    # - pulseaudio # replaced by pipewire-pulse
-    # - pulseaudio-alsa # replaced by pipewire-alsa
-    # - pulseaudio-bluetooth # replaced by pipewire-pulse
-    - pv
-    - python-pip
-    - qt5ct
-    - ripgrep
-    - rofi
-    - socat
-    - system-config-printer # gui
-    - tcpdump
-    - terminator
-    - tmux
-    - tree
-    - vi
-    - vlc
-    - wget
-    - whois
-    - wpa_supplicant
-    - xclip
-    - xorg
-    - xorg-drivers
-    - xscreensaver
-    - unzip
 
 - name: install extra packages
   become: yes
   become_user: root
   tags: [bootstrap]
   package:
-    name: "{{ item }}"
+    name:
+      - adwaita-qt5-git
+      - calibre
+      - cowsay
+      - dmenu
+      - feh
+      - figlet
+      - flameshot
+      - jq
+      - keynav
+      - helm
+      - hexyl
+      - hunspell-en_us
+      - net-tools
+      - p7zip
+      - parallel
+      - rustup
+      - strace
+      - ttf-roboto
+      - ttf-roboto-mono
     state: present
-  loop:
-    - adwaita-qt5-git
-    - calibre
-    - cowsay
-    - dmenu
-    - feh
-    - figlet
-    - flameshot
-    - jq
-    - keynav
-    - helm
-    - hexyl
-    - hunspell-en_us
-    - net-tools
-    - p7zip
-    - parallel
-    - rustup
-    - strace
-    - ttf-roboto
-    - ttf-roboto-mono
 
 - name: install aur packages
   include_tasks: aura.yml
