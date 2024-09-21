@@ -4,11 +4,10 @@
   become: yes
   become_user: root
   package:
-    name: "{{ item }}"
+    name:
+      - docker
+      - docker-compose
     state: present
-  loop:
-    - docker
-    - docker-compose
 
 - name: add local user to docker group
   become: yes

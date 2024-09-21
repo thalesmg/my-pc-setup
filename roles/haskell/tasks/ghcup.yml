@@ -1,8 +1,8 @@
 ---
 
-- set_fact:
-    ghc_version: "9.0.2"
-    cabal_version: "3.6.2.0"
+# - set_fact:
+#     ghc_version: "9.0.2"
+#     cabal_version: "3.6.2.0"
 
 - name: download ghcup installer
   get_url:
@@ -25,9 +25,11 @@
   command: ghcup install stack latest
 
 - name: install ghc
-  command: ghcup install ghc {{ ghc_version }}
+  # command: ghcup install ghc {{ ghc_version }}
+  command: ghcup install ghc
 
 - name: install cabal
-  command: ghcup install cabal {{ cabal_version }}
+  # command: ghcup install cabal {{ cabal_version }}
+  command: ghcup install cabal
 
 ...
