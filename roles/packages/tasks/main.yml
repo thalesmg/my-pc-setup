@@ -9,7 +9,7 @@
     state: present
   loop:
     - acpid
-    - adwaita-qt5
+    # - adwaita-qt5
     - alsa-utils
     - ansible
     - arandr
@@ -36,7 +36,7 @@
     - mtr
     - nano
     - neovim
-    - netctl
+    # - netctl
     - nmon # monitoring/benchmarking
     - openbsd-netcat
     - openssh
@@ -78,6 +78,7 @@
     name: "{{ item }}"
     state: present
   loop:
+    - adwaita-qt5-git
     - calibre
     - cowsay
     - dmenu
