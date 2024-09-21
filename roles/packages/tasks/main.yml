@@ -75,7 +75,7 @@
   tags: [bootstrap]
   package:
     name:
-      - adwaita-qt5-git
+      - adwaita-qt6-git
       - calibre
       - cowsay
       - dmenu
