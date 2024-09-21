@@ -16,8 +16,10 @@
         name: "{{ item }}"
         state: present
       loop:
-        - ghc
-        - fakeroot
+        - rustup
+
+    - name: setup rust toolchain
+      command: "rustup toolchain install stable"
 
     - name: download tar
       get_url:
