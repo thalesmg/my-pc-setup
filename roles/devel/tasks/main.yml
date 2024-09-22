@@ -9,6 +9,9 @@
 - import_tasks: dhall.yml
   tags: [dhall]
 
+- import_tasks: clojure.yaml
+  tags: [clojure]
+
 - import_tasks: clj-kondo.yml
   tags: [clj_kondo]
 

@@ -1,0 +1,12 @@
+---
+
+- name: install clojure
+  become: yes
+  become_user: root
+  tags: [clojure]
+  package:
+    name:
+      - clojure
+      - rlwrap
+
+...

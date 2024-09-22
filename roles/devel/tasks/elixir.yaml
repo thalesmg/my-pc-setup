@@ -1,0 +1,10 @@
+---
+
+- name: packages (aura)
+  include_tasks: aura.yml
+  vars:
+    package: "{{ item }}"
+  loop:
+    - kerl
+
+...

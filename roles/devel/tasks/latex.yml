@@ -4,12 +4,11 @@
   become: yes
   become_user: root
   package:
-    name: "{{ item }}"
+    name:
+      - texlive-bin
+      - texlive-core
+      - texlive-latexextra
+      - texlive-science
     state: present
-  loop:
-    - texlive-bin
-    - texlive-core
-    - texlive-latexextra
-    - texlive-science
 
 ...
