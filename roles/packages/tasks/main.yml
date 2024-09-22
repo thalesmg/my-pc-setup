@@ -37,6 +37,7 @@
       - nano
       - neovim
       # - netctl
+      - nmap
       - nmon # monitoring/benchmarking
       - openbsd-netcat
       - openssh
