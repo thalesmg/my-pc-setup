@@ -19,6 +19,7 @@
       - curl
       - dialog
       - dmenu
+      - evince
       - expect
       - fcitx5-im # input methods (e.g. japanese) + GUIs
       - fcitx5-mozc # input method for japanese

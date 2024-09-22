@@ -22,7 +22,7 @@
     state: absent
 
 - name: install stack
-  command: ghcup install stack latest
+  command: ghcup install stack
 
 - name: install ghc
   # command: ghcup install ghc {{ ghc_version }}
