@@ -91,6 +91,7 @@
       - net-tools
       - p7zip
       - parallel
+      - powerline-fonts
       - rustup
       - strace
       - ttf-roboto
@@ -112,7 +113,7 @@
     - otf-symbola
     - pakku
     - pass-git-helper
-    - powerline-fonts-git
+    # - powerline-fonts-git
 
 - import_tasks: vlc.yml
   tags: [vlc]
