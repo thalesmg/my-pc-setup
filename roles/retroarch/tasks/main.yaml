@@ -1,0 +1,28 @@
+---
+
+- name: install packages
+  become: yes
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - retroarch
+      - retroarch-assets-ozone
+    state: present
+
+- name: generate config files
+  ansible.builtin.command: retroarch
+
+- name: enable online updater cores
+  ansible.builtin.lineinfile:
+    path: "{{ home }}/.config/retroarch/retroarch.cfg"
+    regexp: "{{ item.re }}"
+    line: "{{ item.line }}"
+  loop:
+    - re: "^libretro_directory ="
+      line: 'libretro_directory = "~/.config/retroarch/cores"'
+    - re: "^libretro_info_path ="
+      line: 'libretro_info_path = "~/.config/retroarch/cores/info"'
+    - re: '^menu_show_core_updater ='
+      line: 'menu_show_core_updater = "true"'
+
+...
