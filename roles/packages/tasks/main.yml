@@ -55,6 +55,7 @@
       - ripgrep
       - rofi
       - socat
+      - sysstat # iostat
       - system-config-printer # gui
       - tcpdump
       - terminator
