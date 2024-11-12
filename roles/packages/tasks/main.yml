@@ -30,6 +30,8 @@
       - gnupg
       - inetutils
       - inotify-tools
+      - iptables
+      - iptables-nft
       - iwd
       - hplip # hp printers
       - lsof
@@ -52,6 +54,7 @@
       - pv
       - python-pip
       - qt5ct
+      - qt6ct
       - ripgrep
       - rofi
       - socat
