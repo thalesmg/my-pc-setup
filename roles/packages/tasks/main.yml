@@ -30,7 +30,7 @@
       - gnupg
       - inetutils
       - inotify-tools
-      - iptables
+      # - iptables
       - iptables-nft
       - iwd
       - hplip # hp printers
