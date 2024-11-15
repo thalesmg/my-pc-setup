@@ -28,12 +28,14 @@
       - fzf
       - git
       - gnupg
+      - hplip # hp printers
       - inetutils
       - inotify-tools
       # - iptables
+      - iperf3
       - iptables-nft
       - iwd
-      - hplip # hp printers
+      - kvantum
       - lsof
       - mtr
       - nano
@@ -67,6 +69,7 @@
       - unixodbc
       - vi
       - vlc
+      - wireshark-qt
       - wget
       - whois
       - wpa_supplicant
