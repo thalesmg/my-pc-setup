@@ -43,6 +43,9 @@
       # - netctl
       - nmap
       - nmon # monitoring/benchmarking
+      - noto-fonts
+      - noto-fonts-cjk # japanese
+      - noto-fonts-emoji
       - openbsd-netcat
       - openssh
       - pacman-contrib
@@ -68,6 +71,7 @@
       - tree
       - unixodbc
       - vi
+      - virt-manager
       - vlc
       - wireshark-qt
       - wget
@@ -118,6 +122,7 @@
     - duc
     - hunspell-pt-br
     - keynav
+    - noto-color-emoji-fontconfig
     - otf-symbola
     - pakku
     - pass-git-helper
