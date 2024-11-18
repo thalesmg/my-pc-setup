@@ -1,0 +1,22 @@
+---
+
+- name: install packages
+  ansible.builtin.package:
+    name:
+      - ntp
+    state: present
+
+- name: configure ntp.conf
+  become: yes
+  become_user: root
+  ansible.builtin.copy:
+    src: ntp.conf
+    dest: /etc/ntp.conf
+    mode: 0644
+
+- name: start ntpd
+  ansible.builtin.systemd_service:
+    name: ntpd
+    state: started
+    daemon_reload: true
+    enabled: true
