@@ -70,6 +70,7 @@
       - tmux
       - tree
       - unixodbc
+      - usbutils
       - vi
       - virt-manager
       - vlc

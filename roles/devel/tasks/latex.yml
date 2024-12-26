@@ -9,6 +9,7 @@
       - texlive-core
       - texlive-latexextra
       - texlive-science
+      - texlive-xetex
     state: present
 
 ...
