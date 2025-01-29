@@ -1,7 +1,7 @@
 ---
 
 - set_fact:
-    clj_kondo_version: "v2023.05.26"
+    clj_kondo_version: "v2025.01.16"
 
 - name: get releases
   uri:
