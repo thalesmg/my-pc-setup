@@ -55,6 +55,12 @@ myMiscKeys conf@XConfig{modMask = modm} = M.fromList $
   , ((modm, xK_b), sendMessage ToggleStruts)
   , ((altMask .|. controlMask, xK_l), spawn "xscreensaver-command --lock")
   , ((shiftMask .|. modm, xK_Print), spawn "peek")
+  -- must set `~/.config/flameshot/flameshot.ini with
+  {-
+   [General]
+   useX11LegacyScreenshot=true
+   -}
+  -- https://github.com/flameshot-org/flameshot/issues/4639#issuecomment-4771151002
   , ((modm, xK_Print), spawn "flameshot gui --clipboard -p {{ home }}/Pictures/")
   , ((0, xK_Print), spawn "flameshot full -p {{ home }}/Pictures/")
   -- FIXME: construir script em clisp
