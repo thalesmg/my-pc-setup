@@ -61,7 +61,7 @@ myMiscKeys conf@XConfig{modMask = modm} = M.fromList $
    useX11LegacyScreenshot=true
    -}
   -- https://github.com/flameshot-org/flameshot/issues/4639#issuecomment-4771151002
-  , ((modm, xK_Print), spawn "flameshot gui --clipboard -p {{ home }}/Pictures/")
+  , ((modm, xK_Print), spawn "flameshot gui")
   , ((0, xK_Print), spawn "flameshot full -p {{ home }}/Pictures/")
   -- FIXME: construir script em clisp
   , ((0, xF86XK_MonBrightnessDown), spawn "{{ home }}/bin/backlight/manage_backlight.sh dec")
