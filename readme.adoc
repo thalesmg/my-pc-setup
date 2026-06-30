@@ -1,0 +1,4 @@
+[source,shell]
+----
+ansible-playbook -i hosts default.yml -t babashka
+----
