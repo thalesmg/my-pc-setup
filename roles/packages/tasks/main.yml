@@ -19,6 +19,7 @@
       - curl
       - dialog
       - dmenu
+      - easyeffects # equalizer
       - evince
       - expect
       - fcitx5-im # input methods (e.g. japanese) + GUIs
@@ -37,6 +38,7 @@
       - iwd
       - kvantum
       - lsof
+      - lsp-plugins # equalizer
       - mtr
       - nano
       - neovim
